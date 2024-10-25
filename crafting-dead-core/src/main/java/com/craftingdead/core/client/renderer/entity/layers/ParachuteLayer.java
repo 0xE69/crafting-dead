@@ -37,6 +37,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import org.jetbrains.annotations.NotNull;
 
 public class ParachuteLayer<T extends LivingEntity, M extends EntityModel<T>>
     extends RenderLayer<T, M> {
@@ -52,7 +53,7 @@ public class ParachuteLayer<T extends LivingEntity, M extends EntityModel<T>>
   }
 
   @Override
-  public void render(PoseStack poseStack, MultiBufferSource renderTypeBuffer, int packedLight,
+  public void render(@NotNull PoseStack poseStack, @NotNull MultiBufferSource renderTypeBuffer, int packedLight,
       T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageTicks,
       float headYaw, float headPitch) {
     if (livingEntity.hasEffect(ModMobEffects.PARACHUTE.get())) {
@@ -91,39 +92,45 @@ public class ParachuteLayer<T extends LivingEntity, M extends EntityModel<T>>
 
     anchor.addOrReplaceChild("cube_r3",
         CubeListBuilder.create()
+            .texOffs(0, 0)
+            .addBox(-8.0F, -1.0F, -8.0F, 16.0F, 1.0F, 16.0F),
+        PartPose.offsetAndRotation(15.7048F, -54.626F, 0.0F, 0.0F, 0.0F, 0.1745F));
+
+    anchor.addOrReplaceChild("cube_r4",
+        CubeListBuilder.create()
+            .texOffs(0, 17)
+            .addBox(-8.0F, -1.0F, -8.0F, 16.0F, 1.0F, 16.0F),
+        PartPose.offsetAndRotation(30.9324F, -50.5458F, 0.0F, 0.0F, 0.0F, 0.3491F));
+
+    anchor.addOrReplaceChild("cube_r5",
+        CubeListBuilder.create()
             .texOffs(0, 51)
             .addBox(-0.4226F, -0.1075F, -0.1574F, 1.0F, 43.0F, 1.0F),
         PartPose.offsetAndRotation(-37.0F, -48.5F, -7.0F, 0.1309F, 0.0F, -0.8727F));
 
-    anchor.addOrReplaceChild("cube_r4",
+    anchor.addOrReplaceChild("cube_r6",
         CubeListBuilder.create()
             .texOffs(4, 51)
             .addBox(-0.4226F, -0.1075F, -0.8426F, 1.0F, 43.0F, 1.0F),
         PartPose.offsetAndRotation(-37.0F, -48.5F, 7.0F, -0.1309F, 0.0F, -0.8727F));
 
-    anchor.addOrReplaceChild("cube_r5",
+    anchor.addOrReplaceChild("cube_r7",
         CubeListBuilder.create()
             .texOffs(8, 51)
             .addBox(-0.5774F, -0.1075F, -0.8426F, 1.0F, 43.0F, 1.0F),
         PartPose.offsetAndRotation(37.0F, -48.5F, 7.0F, -0.1309F, 0.0F, 0.8727F));
 
-    anchor.addOrReplaceChild("cube_r6",
-        CubeListBuilder.create()
-            .texOffs(0, 34)
-            .addBox(-8.0F, -1.0F, -8.0F, 16.0F, 1.0F, 16.0F),
-        PartPose.offsetAndRotation(15.7048F, -54.626F, 0.0F, 0.0F, 0.0F, 0.1745F));
-
-    anchor.addOrReplaceChild("cube_r7",
-        CubeListBuilder.create()
-            .texOffs(12, 51)
-            .addBox(-0.5774F, -0.1075F, -0.1574F, 1.0F, 43.0F, 1.0F),
-        PartPose.offsetAndRotation(37.0F, -48.5F, -7.0F, 0.1309F, 0.0F, 0.8727F));
-
     anchor.addOrReplaceChild("cube_r8",
         CubeListBuilder.create()
-            .texOffs(48, 48)
-            .addBox(-8.0F, -1.0F, -8.0F, 16.0F, 1.0F, 16.0F),
-        PartPose.offsetAndRotation(30.9324F, -50.5458F, 0.0F, 0.0F, 0.0F, 0.3491F));
+            .texOffs(0, 51)
+            .addBox(-0.4226F, -0.1075F, -0.1574F, 1.0F, 43.0F, 1.0F),
+        PartPose.offsetAndRotation(37.0F, -48.5F, -7.0F, 0.1309F, 0.0F, 0.8727F));
+
+    anchor.addOrReplaceChild("cube_r9",
+        CubeListBuilder.create()
+            .texOffs(4, 51)
+            .addBox(-0.4226F, -0.1075F, -0.8426F, 1.0F, 43.0F, 1.0F),
+        PartPose.offsetAndRotation(37.0F, -48.5F, 7.0F, -0.1309F, 0.0F, 0.8727F));
 
     return LayerDefinition.create(mesh, 128, 128);
   }
