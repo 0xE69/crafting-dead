@@ -41,6 +41,7 @@ public class ServerConfig {
   // Game-Settings Values
   // ================================================================================
 
+  public final ForgeConfigSpec.BooleanValue overrideMinecraftInventory;
   public final ForgeConfigSpec.BooleanValue allowOffhandSwap;
   public final ForgeConfigSpec.BooleanValue allowTogglePerspective;
   public final ForgeConfigSpec.DoubleValue handcuffDamageChance;
@@ -170,6 +171,10 @@ public class ServerConfig {
         .comment("General Game-Settings")
         .push("game-settings");
     {
+      this.overrideMinecraftInventory = builder
+          .translation("options.craftingdead.server.override_minecraft_inventory")
+          .comment("If true overrides the default Minecraft inventory with the Crafting Dead inventory (Opens with \"E\")")
+          .define("overrideWithCraftingDeadInventory", false);
       this.allowOffhandSwap = builder
           .translation("options.craftingdead.server.allow_offhand_swap")
           .comment("If true players are allowed to swap items to the offhand")

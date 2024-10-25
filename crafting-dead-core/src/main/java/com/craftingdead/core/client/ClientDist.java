@@ -21,6 +21,7 @@ package com.craftingdead.core.client;
 import com.craftingdead.core.network.message.play.DamageHandcuffsMessage;
 import java.util.Optional;
 import java.util.Set;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import org.jetbrains.annotations.Nullable;
@@ -503,9 +504,11 @@ public class ClientDist implements ModDist {
 
       // Update tutorial
       while (OPEN_EQUIPMENT_MENU.consumeClick()) {
-        NetworkChannel.PLAY.getSimpleChannel().sendToServer(new OpenEquipmentMenuMessage());
-        if (this.minecraft.getTutorial().instance instanceof ModTutorialStepInstance) {
-          ((ModTutorialStepInstance) this.minecraft.getTutorial().instance).openEquipmentMenu();
+        if (!player.isHandcuffed()) {
+          NetworkChannel.PLAY.getSimpleChannel().sendToServer(new OpenEquipmentMenuMessage());
+          if (this.minecraft.getTutorial().instance instanceof ModTutorialStepInstance) {
+            ((ModTutorialStepInstance) this.minecraft.getTutorial().instance).openEquipmentMenu();
+          }
         }
       }
       TutorialSteps currentTutorialStep = this.minecraft.options.tutorialStep;
@@ -735,11 +738,33 @@ public class ClientDist implements ModDist {
 
   @SubscribeEvent
   public void handleScreenOpen(ScreenOpenEvent event) {
-    // Prevents current screen being closed before new one opens.
+    if (this.minecraft == null || this.minecraft.player == null) {
+      return;
+    }
+
+    final var player = this.minecraft.player;
+    var playerExtension = PlayerExtension.get(player);
+
+    // Prevents current screen from being closed before new one opens.
     if (this.minecraft.screen instanceof EquipmentScreen screen
         && event.getScreen() == null
         && screen.isTransitioning()) {
       event.setCanceled(true);
+    }
+
+    // Prevents the player from opening the inventory if handcuffed
+    if (playerExtension != null && playerExtension.isHandcuffed()) {
+      if (event.getScreen() instanceof InventoryScreen && isSurvivalMode()) {
+        event.setCanceled(true);
+        return;
+      }
+    }
+
+    // Allows overriding the default inventory with the crafting dead inventory
+    if (event.getScreen() instanceof InventoryScreen && isSurvivalMode()
+        && ServerConfig.instance.overrideMinecraftInventory.get()) {
+      event.setCanceled(true);
+      NetworkChannel.PLAY.getSimpleChannel().sendToServer(new OpenEquipmentMenuMessage());
     }
   }
 
@@ -861,5 +886,10 @@ public class ClientDist implements ModDist {
     ModelPart parachuteModel = entityModelSet.bakeLayer(ModModelLayers.PARACHUTE);
     parachuteModel.render(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
     poseStack.popPose();
+  }
+
+  private boolean isSurvivalMode() {
+    return this.minecraft.player != null && !this.minecraft.player.getAbilities().instabuild
+        && !this.minecraft.player.isSpectator();
   }
 }

@@ -19,6 +19,7 @@
   "options.craftingdead.client.crosshair": "Crosshair",
   "options.craftingdead.client.kill_sound": "Kill Sound",
 
+  "options.craftingdead.server.override_minecraft_inventory": "Override Minecraft Inventory",
   "options.craftingdead.server.allow_offhand_swap": "Allow Offhand Swap",
   "options.craftingdead.server.allow_toggle_perspective": "Allow Toggle Perspective",
   "options.craftingdead.server.handcuff_damage_chance": "Handcuff Damage Chance",
