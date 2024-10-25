@@ -26,6 +26,7 @@ import com.craftingdead.core.network.message.play.EnableCombatModeMessage;
 import com.craftingdead.core.network.message.play.HitMessage;
 import com.craftingdead.core.network.message.play.OpenEquipmentMenuMessage;
 import com.craftingdead.core.network.message.play.OpenStorageMessage;
+import com.craftingdead.core.network.message.play.ParachuteSyncMessage;
 import com.craftingdead.core.network.message.play.PerformActionMessage;
 import com.craftingdead.core.network.message.play.SecondaryActionMessage;
 import com.craftingdead.core.network.message.play.SetFireModeMessage;
@@ -147,6 +148,13 @@ public enum NetworkChannel {
           .encoder(DamageHandcuffsMessage::encode)
           .decoder(DamageHandcuffsMessage::decode)
           .consumer(DamageHandcuffsMessage::handle)
+          .add();
+
+      simpleChannel
+          .messageBuilder(ParachuteSyncMessage.class, 0x10, NetworkDirection.PLAY_TO_CLIENT)
+          .encoder(ParachuteSyncMessage::encode)
+          .decoder(ParachuteSyncMessage::decode)
+          .consumer(ParachuteSyncMessage::handle)
           .add();
     }
   };
