@@ -44,24 +44,27 @@ public class KeyboardHandlerMixin {
     }
 
     int dropKey = minecraft.options.keyDrop.getKey().getValue();
-    if (key == dropKey && playerExtension.isHandcuffed()) {
+    if (key == dropKey
+        && playerExtension.isHandcuffed()) {
       ci.cancel();
     }
 
     int shiftKey = minecraft.options.keyShift.getKey().getValue();
-    if (key == shiftKey && playerExtension.entity().hasEffect(ModMobEffects.PARACHUTE.get())) {
+    if (key == shiftKey
+        && playerExtension.entity().hasEffect(ModMobEffects.PARACHUTE.get())) {
       ci.cancel();
     }
 
     int offhandKey = minecraft.options.keySwapOffhand.getKey().getValue();
     if (key == offhandKey
-        && playerExtension.entity().getMainHandItem().getItem() instanceof GunItem
-        || !ServerConfig.instance.allowOffhandSwap.get()) {
+        && (playerExtension.entity().getMainHandItem().getItem() instanceof GunItem
+        || !ServerConfig.instance.allowOffhandSwap.get())) {
       ci.cancel();
     }
 
     int togglePerspectiveKey = minecraft.options.keyTogglePerspective.getKey().getValue();
-    if (key == togglePerspectiveKey && !ServerConfig.instance.allowTogglePerspective.get()) {
+    if (key == togglePerspectiveKey
+        && !ServerConfig.instance.allowTogglePerspective.get()) {
       ci.cancel();
     }
   }
