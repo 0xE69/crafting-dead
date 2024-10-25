@@ -54,11 +54,10 @@ public class KeyboardHandlerMixin {
     }
 
     int offhandKey = minecraft.options.keySwapOffhand.getKey().getValue();
-    if (key == offhandKey) {
-      if (playerExtension.entity().getMainHandItem().getItem() instanceof GunItem
-          || !ServerConfig.instance.allowOffhandSwap.get()) {
-        ci.cancel();
-      }
+    if (key == offhandKey
+        && playerExtension.entity().getMainHandItem().getItem() instanceof GunItem
+        || !ServerConfig.instance.allowOffhandSwap.get()) {
+      ci.cancel();
     }
 
     int togglePerspectiveKey = minecraft.options.keyTogglePerspective.getKey().getValue();
