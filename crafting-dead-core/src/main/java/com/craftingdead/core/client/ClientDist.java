@@ -18,8 +18,16 @@
 
 package com.craftingdead.core.client;
 
+import com.craftingdead.core.network.message.play.DamageHandcuffsMessage;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
 import java.util.Optional;
 import java.util.Set;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 import com.craftingdead.core.CraftingDead;
@@ -251,7 +259,7 @@ public class ClientDist implements ModDist {
    * (contains both client and server code) don't access fields directly from {@link Minecraft} as
    * it will cause class loading problems. To safely access {@link ClientPlayerEntity} in a
    * multi-sided environment, use {@link #getPlayerExtension()}.
-   * 
+   *
    * @return {@link Minecraft}
    */
   public Minecraft getMinecraft() {
@@ -500,9 +508,11 @@ public class ClientDist implements ModDist {
 
       // Update tutorial
       while (OPEN_EQUIPMENT_MENU.consumeClick()) {
-        NetworkChannel.PLAY.getSimpleChannel().sendToServer(new OpenEquipmentMenuMessage());
-        if (this.minecraft.getTutorial().instance instanceof ModTutorialStepInstance) {
-          ((ModTutorialStepInstance) this.minecraft.getTutorial().instance).openEquipmentMenu();
+        if (!player.isHandcuffed()) {
+          NetworkChannel.PLAY.getSimpleChannel().sendToServer(new OpenEquipmentMenuMessage());
+          if (this.minecraft.getTutorial().instance instanceof ModTutorialStepInstance) {
+            ((ModTutorialStepInstance) this.minecraft.getTutorial().instance).openEquipmentMenu();
+          }
         }
       }
       TutorialSteps currentTutorialStep = this.minecraft.options.tutorialStep;
@@ -597,6 +607,14 @@ public class ClientDist implements ModDist {
         || overlay == ForgeIngameGui.AIR_LEVEL_ELEMENT
         || overlay == ForgeIngameGui.ARMOR_LEVEL_ELEMENT) {
       event.setCanceled(player.isCombatModeEnabled());
+
+      if (overlay == ForgeIngameGui.HOTBAR_ELEMENT
+          && ServerConfig.instance.overrideMinecraftHotbar.get()
+          && !player.isCombatModeEnabled()) {
+        event.setCanceled(true);
+        this.renderHotbar(event.getMatrixStack(), event.getWindow());
+      }
+
     } else if (overlay == ForgeIngameGui.CROSSHAIR_ELEMENT) {
       var aiming = player.mainHandItem().getCapability(Scope.CAPABILITY)
           .map(scope -> scope.isScoping(player))
@@ -635,7 +653,8 @@ public class ClientDist implements ModDist {
             event.getWindow().getGuiScaledWidth(), event.getWindow().getGuiScaledHeight(),
             event.getPartialTicks());
       }
-      default -> {}
+      default -> {
+      }
     }
   }
 
@@ -731,19 +750,47 @@ public class ClientDist implements ModDist {
 
   @SubscribeEvent
   public void handleScreenOpen(ScreenOpenEvent event) {
-    // Prevents current screen being closed before new one opens.
+    if (this.minecraft == null || this.minecraft.player == null) {
+      return;
+    }
+
+    final var player = this.minecraft.player;
+    var playerExtension = PlayerExtension.get(player);
+
+    // Prevents current screen from being closed before new one opens.
     if (this.minecraft.screen instanceof EquipmentScreen screen
         && event.getScreen() == null
         && screen.isTransitioning()) {
       event.setCanceled(true);
     }
+
+    // Prevents the player from opening the inventory if handcuffed
+    if (playerExtension != null && playerExtension.isHandcuffed()) {
+      if (event.getScreen() instanceof InventoryScreen && isSurvivalMode()) {
+        event.setCanceled(true);
+        return;
+      }
+    }
+
+    // Allows overriding the default inventory with the crafting dead inventory
+    if (event.getScreen() instanceof InventoryScreen && isSurvivalMode()
+        && ServerConfig.instance.overrideMinecraftInventory.get()) {
+      event.setCanceled(true);
+      NetworkChannel.PLAY.getSimpleChannel().sendToServer(new OpenEquipmentMenuMessage());
+    }
   }
 
   @SubscribeEvent
   public void handleRenderHand(RenderHandEvent event) {
-    final var player = this.getCameraPlayer();
-    if (player != null) {
-      event.setCanceled(player.isHandcuffed());
+    final var player = this.minecraft.player;
+    final var cameraPlayer = this.getCameraPlayer();
+
+    if (cameraPlayer != null) {
+      event.setCanceled(cameraPlayer.isHandcuffed());
+    }
+
+    if (player != null && player.hasEffect(ModMobEffects.PARACHUTE.get())) {
+      renderParachute(event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight());
     }
   }
 
@@ -752,6 +799,26 @@ public class ClientDist implements ModDist {
     final var player = this.getCameraPlayer();
     if (player != null && player.isHandcuffed()) {
       event.setSwingHand(false);
+    }
+  }
+
+  @SubscribeEvent
+  public void onMouseInput(InputEvent.MouseInputEvent event) {
+    if (this.minecraft.options.keyUse.matchesMouse(event.getButton())
+        && event.getAction() == GLFW.GLFW_PRESS) {
+      if (this.minecraft.player != null && this.minecraft.screen == null) {
+        NetworkChannel.PLAY.getSimpleChannel().sendToServer(new DamageHandcuffsMessage());
+      }
+    }
+  }
+
+  @SubscribeEvent
+  public void onKeyInput(InputEvent.KeyInputEvent event) {
+    if (this.minecraft.options.keyUse.matches(event.getKey(), event.getScanCode())
+        && event.getAction() == GLFW.GLFW_PRESS) {
+      if (this.minecraft.player != null && this.minecraft.screen == null) {
+        NetworkChannel.PLAY.getSimpleChannel().sendToServer(new DamageHandcuffsMessage());
+      }
     }
   }
 
@@ -810,5 +877,74 @@ public class ClientDist implements ModDist {
           bufferSource.getBuffer(RenderType.entityTranslucent(clothingTexture)), packedLight,
           OverlayTexture.NO_OVERLAY);
     }
+  }
+
+  private void renderParachute(PoseStack poseStack, MultiBufferSource bufferSource,
+      int packedLight) {
+    poseStack.pushPose();
+    poseStack.translate(0.0D, -1.08D, -1.0D);
+    poseStack.mulPose(Vector3f.XP.rotationDegrees(180.0F));
+
+    var vertexConsumer = ItemRenderer.getArmorFoilBuffer(
+        bufferSource,
+        RenderType.armorCutoutNoCull(
+            new ResourceLocation(CraftingDead.ID, "textures/entity/parachute.png")
+        ),
+        false,
+        false
+    );
+
+    EntityModelSet entityModelSet = Minecraft.getInstance().getEntityModels();
+    ModelPart parachuteModel = entityModelSet.bakeLayer(ModModelLayers.PARACHUTE);
+    parachuteModel.render(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
+    poseStack.popPose();
+  }
+
+  private void renderHotbar(PoseStack poseStack, Window window) {
+    var player = this.getPlayerExtension().orElse(null);
+
+    assert player != null;
+    if (player.isCombatModeEnabled()) {
+      return;
+    }
+
+    int screenWidth = window.getGuiScaledWidth();
+    int screenHeight = window.getGuiScaledHeight();
+
+    int xPos = (screenWidth / 2) - 91;
+    int yPos = screenHeight - 22;
+
+    this.minecraft.getProfiler().push("hotbar");
+    RenderSystem.setShader(GameRenderer::getPositionTexShader);
+    RenderSystem.setShaderTexture(0,
+        new ResourceLocation(CraftingDead.ID, "textures/gui/container/widgets.png"));
+    RenderSystem.enableBlend();
+    RenderSystem.defaultBlendFunc();
+
+    this.minecraft.gui.blit(poseStack, xPos, yPos, 0, 0, 182, 22);
+
+    int selectedSlot = player.entity().getInventory().selected;
+    int selectedXPos = xPos + selectedSlot * 20 - 1;
+
+    this.minecraft.gui.blit(poseStack, selectedXPos, yPos - 1, 0, 22, 24, 24);
+
+    var itemRenderer = this.minecraft.getItemRenderer();
+
+    for (int i = 0; i < 9; ++i) {
+      int slotXPos = xPos + i * 20 + 3;
+      int slotYPos = yPos + 3;
+      ItemStack itemStack = player.entity().getInventory().getItem(i);
+
+      itemRenderer.renderAndDecorateItem(itemStack, slotXPos, slotYPos);
+      itemRenderer.renderGuiItemDecorations(this.minecraft.font, itemStack, slotXPos, slotYPos);
+    }
+
+    RenderSystem.disableBlend();
+    this.minecraft.getProfiler().pop();
+  }
+
+  private boolean isSurvivalMode() {
+    return this.minecraft.player != null && !this.minecraft.player.getAbilities().instabuild
+        && !this.minecraft.player.isSpectator();
   }
 }

@@ -18,6 +18,8 @@
 
 package com.craftingdead.core.world.entity.extension;
 
+import com.craftingdead.core.ServerConfig;
+import net.minecraft.sounds.SoundEvents;
 import org.jetbrains.annotations.Nullable;
 import com.craftingdead.core.capability.CapabilityUtil;
 import com.craftingdead.core.world.item.equipment.Equipment;
@@ -67,5 +69,15 @@ public interface PlayerExtension<E extends Player>
     }
     this.setHandcuffs(handcuffs);
     return false;
+  }
+
+  default void handcuffInteract() {
+    if (this.random().nextFloat() < ServerConfig.instance.handcuffDamageChance.get().floatValue()
+        && !this.damageHandcuffs(1)
+        && !this.entity().isSilent()) {
+      this.level().playSound(null, this.entity().getX(), this.entity().getY(),
+          this.entity().getZ(), SoundEvents.ITEM_BREAK, this.entity().getSoundSource(), 0.8F,
+          0.8F + this.level().getRandom().nextFloat() * 0.4F);
+    }
   }
 }

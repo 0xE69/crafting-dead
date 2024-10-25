@@ -60,7 +60,7 @@ public class MagazineReloadAction extends AbstractReloadAction {
   @Override
   public boolean start(boolean simulate) {
     var result = this.findMagazine(this.performer());
-    if (!result.isPresent()) {
+    if (this.performer.entity().isSprinting() || result.isEmpty()) {
       return false;
     }
 

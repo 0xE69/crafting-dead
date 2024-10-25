@@ -38,6 +38,16 @@ public class ServerConfig {
   public final ForgeConfigSpec.BooleanValue killSoundEnabled;
 
   // ================================================================================
+  // Game-Settings Values
+  // ================================================================================
+
+  public final ForgeConfigSpec.BooleanValue overrideMinecraftInventory;
+  public final ForgeConfigSpec.BooleanValue overrideMinecraftHotbar;
+  public final ForgeConfigSpec.BooleanValue allowOffhandSwap;
+  public final ForgeConfigSpec.BooleanValue allowTogglePerspective;
+  public final ForgeConfigSpec.DoubleValue handcuffDamageChance;
+
+  // ================================================================================
   // Burst-fire Values
   // ================================================================================
 
@@ -156,6 +166,34 @@ public class ServerConfig {
     this.killSoundEnabled = builder
         .translation("options.craftingdead.server.kill_sound_enabled")
         .define("killSoundEnabled", true);
+
+    // Game-Settings configuration
+    builder
+        .comment("General Game-Settings")
+        .push("game-settings");
+    {
+      this.overrideMinecraftInventory = builder
+          .translation("options.craftingdead.server.override_minecraft_inventory")
+          .comment("If true overrides the default Minecraft inventory with the Crafting Dead inventory (Opens with \"E\")")
+          .define("overrideWithCraftingDeadInventory", false);
+      this.overrideMinecraftHotbar = builder
+          .translation("options.craftingdead.server.override_minecraft_hotbar")
+          .comment("If true overrides the default Minecraft hotbar")
+          .define("overrideMinecraftHotbar", false);
+      this.allowOffhandSwap = builder
+          .translation("options.craftingdead.server.allow_offhand_swap")
+          .comment("If true players are allowed to swap items to the offhand")
+          .define("allowOffhandSwap", true);
+      this.allowTogglePerspective = builder
+          .translation("options.craftingdead.server.allow_toggle_perspective")
+          .comment("If true players are allowed to toggle their perspective")
+          .define("allowTogglePerspective", true);
+      this.handcuffDamageChance = builder
+          .translation("options.craftingdead.server.handcuff_damage_chance")
+          .comment("The Chance that the player damages the handcuff")
+          .defineInRange("handcuffDamageChance", 0.4F, 0.1F, 1.0F);
+    }
+    builder.pop();
 
     // Burst-fire configuration
     builder

@@ -18,11 +18,14 @@
 
 package com.craftingdead.core.world.effect;
 
+import com.craftingdead.core.network.NetworkChannel;
+import com.craftingdead.core.network.message.play.ParachuteSyncMessage;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.network.PacketDistributor;
 
 public class ParachuteMobEffect extends MobEffect {
 
@@ -35,10 +38,12 @@ public class ParachuteMobEffect extends MobEffect {
   @Override
   public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
     livingEntity.resetFallDistance();
-    if (livingEntity.isOnGround()) {
+    if (livingEntity.isOnGround() || livingEntity.isInWater()) {
       livingEntity.removeEffect(ModMobEffects.PARACHUTE.get());
+      syncParachuteEffect(livingEntity, false);
       return;
     }
+    syncParachuteEffect(livingEntity, true);
     super.applyEffectTick(livingEntity, amplifier);
   }
 
@@ -50,5 +55,13 @@ public class ParachuteMobEffect extends MobEffect {
   @Override
   public boolean isInstantenous() {
     return false;
+  }
+
+  private void syncParachuteEffect(LivingEntity entity, boolean hasParachute) {
+    if (!entity.level.isClientSide()) {
+      NetworkChannel.PLAY.getSimpleChannel()
+          .send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity),
+              new ParachuteSyncMessage(entity.getId(), hasParachute));
+    }
   }
 }

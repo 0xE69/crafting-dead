@@ -19,6 +19,12 @@
   "options.craftingdead.client.crosshair": "Crosshair",
   "options.craftingdead.client.kill_sound": "Kill Sound",
 
+  "options.craftingdead.server.override_minecraft_inventory": "Override Minecraft Inventory",
+  "options.craftingdead.server.override_minecraft_hotbar": "Override Minecraft Hotbar",
+  "options.craftingdead.server.allow_offhand_swap": "Allow Offhand Swap",
+  "options.craftingdead.server.allow_toggle_perspective": "Allow Toggle Perspective",
+  "options.craftingdead.server.handcuff_damage_chance": "Handcuff Damage Chance",
+
   "options.craftingdead.server.hit_marker_mode": "Hit Marker Mode",
   "options.craftingdead.server.kill_sound_enabled": "Kill Sound Enabled",
   "options.craftingdead.server.burstfire.enable":"Burst Fire Enabled",

@@ -2030,5 +2030,8 @@ public class ModItems {
     ArbitraryTooltips.registerTooltip(SCUBA_CLOTHING,
         new TranslatableComponent("clothing_item.water_speed")
             .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(HANDCUFFS,
+        new TranslatableComponent("handcuffs.information")
+            .withStyle(ChatFormatting.GRAY));
   }
 }
