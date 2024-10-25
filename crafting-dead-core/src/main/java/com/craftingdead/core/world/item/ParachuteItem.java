@@ -26,6 +26,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class ParachuteItem extends Item {
 
@@ -34,13 +35,15 @@ public class ParachuteItem extends Item {
   }
 
   @Override
-  public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+  public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
     ItemStack itemstack = player.getItemInHand(hand);
-    player.addEffect(
-        new MobEffectInstance(ModMobEffects.PARACHUTE.get(), 1200, 0, false, false));
-    if (!player.getAbilities().invulnerable) {
-      itemstack.shrink(1);
+    if (!player.hasEffect(ModMobEffects.PARACHUTE.get())) {
+      player.addEffect(new MobEffectInstance(ModMobEffects.PARACHUTE.get(), 1200, 0, false, false));
+      if (!player.getAbilities().invulnerable) {
+        itemstack.shrink(1);
+      }
+      return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
     }
-    return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
+    return InteractionResultHolder.fail(itemstack);
   }
 }
