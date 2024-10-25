@@ -18,6 +18,7 @@
 
 package com.craftingdead.core.mixin;
 
+import com.craftingdead.core.world.effect.ModMobEffects;
 import com.craftingdead.core.world.entity.extension.PlayerExtension;
 import net.minecraft.client.KeyboardHandler;
 import net.minecraft.client.Minecraft;
@@ -42,6 +43,11 @@ public class KeyboardHandlerMixin {
 
     int dropKey = minecraft.options.keyDrop.getKey().getValue();
     if (key == dropKey && playerExtension.isHandcuffed()) {
+      ci.cancel();
+    }
+
+    int shiftKey = minecraft.options.keyShift.getKey().getValue();
+    if (key == shiftKey && playerExtension.entity().hasEffect(ModMobEffects.PARACHUTE.get())) {
       ci.cancel();
     }
   }
