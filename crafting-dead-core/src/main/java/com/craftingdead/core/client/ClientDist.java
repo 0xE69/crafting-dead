@@ -21,6 +21,8 @@ package com.craftingdead.core.client;
 import com.craftingdead.core.network.message.play.DamageHandcuffsMessage;
 import java.util.Optional;
 import java.util.Set;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 import com.craftingdead.core.CraftingDead;
@@ -743,9 +745,15 @@ public class ClientDist implements ModDist {
 
   @SubscribeEvent
   public void handleRenderHand(RenderHandEvent event) {
-    final var player = this.getCameraPlayer();
-    if (player != null) {
-      event.setCanceled(player.isHandcuffed());
+    final var player = this.minecraft.player;
+    final var cameraPlayer = this.getCameraPlayer();
+
+    if (cameraPlayer != null) {
+      event.setCanceled(cameraPlayer.isHandcuffed());
+    }
+
+    if (player != null && player.hasEffect(ModMobEffects.PARACHUTE.get())) {
+      renderParachute(event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight());
     }
   }
 
@@ -832,5 +840,26 @@ public class ClientDist implements ModDist {
           bufferSource.getBuffer(RenderType.entityTranslucent(clothingTexture)), packedLight,
           OverlayTexture.NO_OVERLAY);
     }
+  }
+
+  private void renderParachute(PoseStack poseStack, MultiBufferSource bufferSource,
+      int packedLight) {
+    poseStack.pushPose();
+    poseStack.translate(0.0D, -1.08D, -1.0D);
+    poseStack.mulPose(Vector3f.XP.rotationDegrees(180.0F));
+
+    var vertexConsumer = ItemRenderer.getArmorFoilBuffer(
+        bufferSource,
+        RenderType.armorCutoutNoCull(
+            new ResourceLocation(CraftingDead.ID, "textures/entity/parachute.png")
+        ),
+        false,
+        false
+    );
+
+    EntityModelSet entityModelSet = Minecraft.getInstance().getEntityModels();
+    ModelPart parachuteModel = entityModelSet.bakeLayer(ModModelLayers.PARACHUTE);
+    parachuteModel.render(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
+    poseStack.popPose();
   }
 }
