@@ -19,11 +19,15 @@
 package com.craftingdead.core.client;
 
 import com.craftingdead.core.network.message.play.DamageHandcuffsMessage;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
 import java.util.Optional;
 import java.util.Set;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 import com.craftingdead.core.CraftingDead;
@@ -603,6 +607,14 @@ public class ClientDist implements ModDist {
         || overlay == ForgeIngameGui.AIR_LEVEL_ELEMENT
         || overlay == ForgeIngameGui.ARMOR_LEVEL_ELEMENT) {
       event.setCanceled(player.isCombatModeEnabled());
+
+      if (overlay == ForgeIngameGui.HOTBAR_ELEMENT
+          && ServerConfig.instance.overrideMinecraftHotbar.get()
+          && !player.isCombatModeEnabled()) {
+        event.setCanceled(true);
+        this.renderHotbar(event.getMatrixStack(), event.getWindow());
+      }
+
     } else if (overlay == ForgeIngameGui.CROSSHAIR_ELEMENT) {
       var aiming = player.mainHandItem().getCapability(Scope.CAPABILITY)
           .map(scope -> scope.isScoping(player))
@@ -886,6 +898,49 @@ public class ClientDist implements ModDist {
     ModelPart parachuteModel = entityModelSet.bakeLayer(ModModelLayers.PARACHUTE);
     parachuteModel.render(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
     poseStack.popPose();
+  }
+
+  private void renderHotbar(PoseStack poseStack, Window window) {
+    var player = this.getPlayerExtension().orElse(null);
+
+    assert player != null;
+    if (player.isCombatModeEnabled()) {
+      return;
+    }
+
+    int screenWidth = window.getGuiScaledWidth();
+    int screenHeight = window.getGuiScaledHeight();
+
+    int xPos = (screenWidth / 2) - 91;
+    int yPos = screenHeight - 22;
+
+    this.minecraft.getProfiler().push("hotbar");
+    RenderSystem.setShader(GameRenderer::getPositionTexShader);
+    RenderSystem.setShaderTexture(0,
+        new ResourceLocation(CraftingDead.ID, "textures/gui/container/widgets.png"));
+    RenderSystem.enableBlend();
+    RenderSystem.defaultBlendFunc();
+
+    this.minecraft.gui.blit(poseStack, xPos, yPos, 0, 0, 182, 22);
+
+    int selectedSlot = player.entity().getInventory().selected;
+    int selectedXPos = xPos + selectedSlot * 20 - 1;
+
+    this.minecraft.gui.blit(poseStack, selectedXPos, yPos - 1, 0, 22, 24, 24);
+
+    var itemRenderer = this.minecraft.getItemRenderer();
+
+    for (int i = 0; i < 9; ++i) {
+      int slotXPos = xPos + i * 20 + 3;
+      int slotYPos = yPos + 3;
+      ItemStack itemStack = player.entity().getInventory().getItem(i);
+
+      itemRenderer.renderAndDecorateItem(itemStack, slotXPos, slotYPos);
+      itemRenderer.renderGuiItemDecorations(this.minecraft.font, itemStack, slotXPos, slotYPos);
+    }
+
+    RenderSystem.disableBlend();
+    this.minecraft.getProfiler().pop();
   }
 
   private boolean isSurvivalMode() {
