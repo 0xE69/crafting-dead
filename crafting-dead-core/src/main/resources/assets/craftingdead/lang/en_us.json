@@ -19,6 +19,8 @@
   "options.craftingdead.client.crosshair": "Crosshair",
   "options.craftingdead.client.kill_sound": "Kill Sound",
 
+  "options.craftingdead.server.handcuff_damage_chance": "Handcuff Damage Chance",
+
   "options.craftingdead.server.hit_marker_mode": "Hit Marker Mode",
   "options.craftingdead.server.kill_sound_enabled": "Kill Sound Enabled",
   "options.craftingdead.server.burstfire.enable":"Burst Fire Enabled",

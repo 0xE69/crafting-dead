@@ -18,6 +18,7 @@
 
 package com.craftingdead.core.client;
 
+import com.craftingdead.core.network.message.play.DamageHandcuffsMessage;
 import java.util.Optional;
 import java.util.Set;
 import org.jetbrains.annotations.Nullable;
@@ -251,7 +252,7 @@ public class ClientDist implements ModDist {
    * (contains both client and server code) don't access fields directly from {@link Minecraft} as
    * it will cause class loading problems. To safely access {@link ClientPlayerEntity} in a
    * multi-sided environment, use {@link #getPlayerExtension()}.
-   * 
+   *
    * @return {@link Minecraft}
    */
   public Minecraft getMinecraft() {
@@ -635,7 +636,8 @@ public class ClientDist implements ModDist {
             event.getWindow().getGuiScaledWidth(), event.getWindow().getGuiScaledHeight(),
             event.getPartialTicks());
       }
-      default -> {}
+      default -> {
+      }
     }
   }
 
@@ -752,6 +754,26 @@ public class ClientDist implements ModDist {
     final var player = this.getCameraPlayer();
     if (player != null && player.isHandcuffed()) {
       event.setSwingHand(false);
+    }
+  }
+
+  @SubscribeEvent
+  public void onMouseInput(InputEvent.MouseInputEvent event) {
+    if (this.minecraft.options.keyUse.matchesMouse(event.getButton())
+        && event.getAction() == GLFW.GLFW_PRESS) {
+      if (this.minecraft.player != null && this.minecraft.screen == null) {
+        NetworkChannel.PLAY.getSimpleChannel().sendToServer(new DamageHandcuffsMessage());
+      }
+    }
+  }
+
+  @SubscribeEvent
+  public void onKeyInput(InputEvent.KeyInputEvent event) {
+    if (this.minecraft.options.keyUse.matches(event.getKey(), event.getScanCode())
+        && event.getAction() == GLFW.GLFW_PRESS) {
+      if (this.minecraft.player != null && this.minecraft.screen == null) {
+        NetworkChannel.PLAY.getSimpleChannel().sendToServer(new DamageHandcuffsMessage());
+      }
     }
   }
 

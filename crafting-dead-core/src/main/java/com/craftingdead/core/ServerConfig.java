@@ -38,6 +38,12 @@ public class ServerConfig {
   public final ForgeConfigSpec.BooleanValue killSoundEnabled;
 
   // ================================================================================
+  // Game-Settings Values
+  // ================================================================================
+
+  public final ForgeConfigSpec.DoubleValue handcuffDamageChance;
+
+  // ================================================================================
   // Burst-fire Values
   // ================================================================================
 
@@ -156,6 +162,18 @@ public class ServerConfig {
     this.killSoundEnabled = builder
         .translation("options.craftingdead.server.kill_sound_enabled")
         .define("killSoundEnabled", true);
+
+    // Game-Settings configuration
+    builder
+        .comment("General Game-Settings")
+        .push("game-settings");
+    {
+      this.handcuffDamageChance = builder
+          .translation("options.craftingdead.server.handcuff_damage_chance")
+          .comment("The Chance that the player damages the handcuff")
+          .defineInRange("handcuffDamageChance", 0.4F, 0.1F, 1.0F);
+    }
+    builder.pop();
 
     // Burst-fire configuration
     builder

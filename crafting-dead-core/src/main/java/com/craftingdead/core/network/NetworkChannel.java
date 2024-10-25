@@ -21,6 +21,7 @@ package com.craftingdead.core.network;
 import com.craftingdead.core.CraftingDead;
 import com.craftingdead.core.network.message.play.CancelActionMessage;
 import com.craftingdead.core.network.message.play.CrouchMessage;
+import com.craftingdead.core.network.message.play.DamageHandcuffsMessage;
 import com.craftingdead.core.network.message.play.EnableCombatModeMessage;
 import com.craftingdead.core.network.message.play.HitMessage;
 import com.craftingdead.core.network.message.play.OpenEquipmentMenuMessage;
@@ -140,6 +141,13 @@ public enum NetworkChannel {
           .decoder(EnableCombatModeMessage::decode)
           .consumer(EnableCombatModeMessage::handle)
           .add();
+
+      simpleChannel
+          .messageBuilder(DamageHandcuffsMessage.class, 0x0F, NetworkDirection.PLAY_TO_SERVER)
+          .encoder(DamageHandcuffsMessage::encode)
+          .decoder(DamageHandcuffsMessage::decode)
+          .consumer(DamageHandcuffsMessage::handle)
+          .add();
     }
   };
 
@@ -156,7 +164,7 @@ public enum NetworkChannel {
    */
   private final SimpleChannel simpleChannel;
 
-  private NetworkChannel(ResourceLocation channelName) {
+  NetworkChannel(ResourceLocation channelName) {
     this.simpleChannel = NetworkRegistry.ChannelBuilder
         .named(channelName)
         .clientAcceptedVersions(NETWORK_VERSION::equals)

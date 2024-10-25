@@ -18,9 +18,6 @@
 
 package com.craftingdead.core.world.entity.extension;
 
-import java.util.Collection;
-import java.util.function.Consumer;
-import org.apache.commons.lang3.mutable.MutableInt;
 import com.craftingdead.core.event.OpenEquipmentMenuEvent;
 import com.craftingdead.core.network.NetworkChannel;
 import com.craftingdead.core.network.SynchedData;
@@ -28,6 +25,8 @@ import com.craftingdead.core.network.message.play.EnableCombatModeMessage;
 import com.craftingdead.core.world.action.Action;
 import com.craftingdead.core.world.inventory.EquipmentMenu;
 import com.craftingdead.core.world.item.equipment.Equipment;
+import java.util.Collection;
+import java.util.function.Consumer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -37,7 +36,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
@@ -51,11 +49,10 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.Event;
+import org.apache.commons.lang3.mutable.MutableInt;
 
 final class PlayerExtensionImpl<E extends Player>
     extends BaseLivingExtension<E, PlayerHandler> implements PlayerExtension<E> {
-
-  private static final float HANDCUFFS_DAMAGE_CHANCE = 0.1F;
 
   private final SynchedData data = new SynchedData();
 
@@ -113,15 +110,7 @@ final class PlayerExtensionImpl<E extends Player>
     if (this.handlers.values().stream().anyMatch(e -> e.handleAttack(target))) {
       return true;
     }
-
-    if (this.isHandcuffed()) {
-      if (!this.level().isClientSide()) {
-        this.handcuffInteract(HANDCUFFS_DAMAGE_CHANCE);
-      }
-      return true;
-    }
-
-    return false;
+    return this.isHandcuffed();
   }
 
   @Override
@@ -129,15 +118,7 @@ final class PlayerExtensionImpl<E extends Player>
     if (this.handlers.values().stream().anyMatch(e -> e.handleInteract(hand, target))) {
       return true;
     }
-
-    if (this.isHandcuffed()) {
-      if (!this.level().isClientSide()) {
-        this.handcuffInteract(HANDCUFFS_DAMAGE_CHANCE);
-      }
-      return true;
-    }
-
-    return false;
+    return this.isHandcuffed();
   }
 
   @Override
@@ -151,8 +132,6 @@ final class PlayerExtensionImpl<E extends Player>
     if (this.isHandcuffed()) {
       if (this.level().isClientSide()) {
         mineResult.accept(Event.Result.DENY);
-      } else {
-        this.handcuffInteract(HANDCUFFS_DAMAGE_CHANCE);
       }
       return true;
     }
@@ -165,15 +144,7 @@ final class PlayerExtensionImpl<E extends Player>
     if (this.handlers.values().stream().anyMatch(e -> e.handleRightClickBlock(hand, pos, face))) {
       return true;
     }
-
-    if (this.isHandcuffed()) {
-      if (!this.level().isClientSide()) {
-        this.handcuffInteract(HANDCUFFS_DAMAGE_CHANCE);
-      }
-      return true;
-    }
-
-    return false;
+    return this.isHandcuffed();
   }
 
   @Override
@@ -181,29 +152,11 @@ final class PlayerExtensionImpl<E extends Player>
     if (this.handlers.values().stream().anyMatch(e -> e.handleRightClickItem(hand))) {
       return true;
     }
-
-    if (this.isHandcuffed()) {
-      if (!this.level().isClientSide()) {
-        this.handcuffInteract(HANDCUFFS_DAMAGE_CHANCE);
-      }
-      return true;
-    }
-
-    return false;
+    return this.isHandcuffed();
   }
 
   public boolean handleBlockBreak(BlockPos pos, BlockState block, MutableInt xp) {
     return this.handlers.values().stream().anyMatch(e -> e.handleBlockBreak(pos, block, xp));
-  }
-
-  private void handcuffInteract(float chance) {
-    if (this.random().nextFloat() < chance
-        && !this.damageHandcuffs(1)
-        && !this.entity().isSilent()) {
-      this.level().playSound(null, this.entity().getX(), this.entity().getY(),
-          this.entity().getZ(), SoundEvents.ITEM_BREAK, this.entity().getSoundSource(), 0.8F,
-          0.8F + this.level().getRandom().nextFloat() * 0.4F);
-    }
   }
 
   @Override
