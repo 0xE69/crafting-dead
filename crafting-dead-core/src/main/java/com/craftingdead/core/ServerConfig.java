@@ -41,6 +41,7 @@ public class ServerConfig {
   // Game-Settings Values
   // ================================================================================
 
+  public final ForgeConfigSpec.BooleanValue allowOffhandSwap;
   public final ForgeConfigSpec.BooleanValue allowTogglePerspective;
   public final ForgeConfigSpec.DoubleValue handcuffDamageChance;
 
@@ -169,6 +170,10 @@ public class ServerConfig {
         .comment("General Game-Settings")
         .push("game-settings");
     {
+      this.allowOffhandSwap = builder
+          .translation("options.craftingdead.server.allow_offhand_swap")
+          .comment("If true players are allowed to swap items to the offhand")
+          .define("allowOffhandSwap", true);
       this.allowTogglePerspective = builder
           .translation("options.craftingdead.server.allow_toggle_perspective")
           .comment("If true players are allowed to toggle their perspective")
