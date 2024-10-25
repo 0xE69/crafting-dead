@@ -18,6 +18,7 @@
 
 package com.craftingdead.core.mixin;
 
+import com.craftingdead.core.ServerConfig;
 import com.craftingdead.core.world.effect.ModMobEffects;
 import com.craftingdead.core.world.entity.extension.PlayerExtension;
 import net.minecraft.client.KeyboardHandler;
@@ -48,6 +49,11 @@ public class KeyboardHandlerMixin {
 
     int shiftKey = minecraft.options.keyShift.getKey().getValue();
     if (key == shiftKey && playerExtension.entity().hasEffect(ModMobEffects.PARACHUTE.get())) {
+      ci.cancel();
+    }
+
+    int togglePerspectiveKey = minecraft.options.keyTogglePerspective.getKey().getValue();
+    if (key == togglePerspectiveKey && !ServerConfig.instance.allowTogglePerspective.get()) {
       ci.cancel();
     }
   }

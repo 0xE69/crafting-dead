@@ -41,6 +41,7 @@ public class ServerConfig {
   // Game-Settings Values
   // ================================================================================
 
+  public final ForgeConfigSpec.BooleanValue allowTogglePerspective;
   public final ForgeConfigSpec.DoubleValue handcuffDamageChance;
 
   // ================================================================================
@@ -168,6 +169,10 @@ public class ServerConfig {
         .comment("General Game-Settings")
         .push("game-settings");
     {
+      this.allowTogglePerspective = builder
+          .translation("options.craftingdead.server.allow_toggle_perspective")
+          .comment("If true players are allowed to toggle their perspective")
+          .define("allowTogglePerspective", true);
       this.handcuffDamageChance = builder
           .translation("options.craftingdead.server.handcuff_damage_chance")
           .comment("The Chance that the player damages the handcuff")
