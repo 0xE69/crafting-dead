@@ -20,6 +20,7 @@ package com.craftingdead.core.world.item;
 
 import java.util.Collection;
 import java.util.function.Supplier;
+
 import org.jetbrains.annotations.Nullable;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -36,16 +37,14 @@ import net.minecraftforge.registries.IRegistryDelegate;
  */
 public class ArbitraryTooltips {
 
-  private static final Multimap<Supplier<Item>, TooltipFunction> toRegister =
-      ArrayListMultimap.create();
-  private static final Multimap<IRegistryDelegate<Item>, TooltipFunction> functions =
-      ArrayListMultimap.create();
+  private static final Multimap<Supplier<? extends Item>, TooltipFunction> toRegister = ArrayListMultimap.create();
+  private static final Multimap<IRegistryDelegate<? extends Item>, TooltipFunction> functions = ArrayListMultimap.create();
 
-  public static void registerTooltip(Supplier<Item> item, Component tooltip) {
+  public static void registerTooltip(Supplier<? extends Item> item, Component tooltip) {
     registerTooltip(item, (stack, level, flag) -> tooltip);
   }
 
-  public static void registerTooltip(Supplier<Item> item, TooltipFunction function) {
+  public static void registerTooltip(Supplier<? extends Item> item, TooltipFunction function) {
     toRegister.put(item, function);
   }
 
@@ -67,7 +66,6 @@ public class ArbitraryTooltips {
   public interface TooltipFunction {
 
     @Nullable
-    Component createTooltip(ItemStack itemStack, @Nullable Level level,
-        TooltipFlag tooltipFlag);
+    Component createTooltip(ItemStack itemStack, @Nullable Level level, TooltipFlag tooltipFlag);
   }
 }
