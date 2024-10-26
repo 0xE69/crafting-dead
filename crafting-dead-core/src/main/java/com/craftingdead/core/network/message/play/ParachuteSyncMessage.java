@@ -27,19 +27,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.network.NetworkEvent;
 
-public class ParachuteSyncMessage {
-
-  private final int entityId;
-  private final boolean hasParachute;
-
-  public ParachuteSyncMessage(int entityId, boolean hasParachute) {
-    this.entityId = entityId;
-    this.hasParachute = hasParachute;
-  }
+public record ParachuteSyncMessage(int entityId, boolean hasParachute) {
 
   public static void encode(ParachuteSyncMessage packet, FriendlyByteBuf buf) {
-    buf.writeInt(packet.entityId);
-    buf.writeBoolean(packet.hasParachute);
+    buf.writeInt(packet.entityId());
+    buf.writeBoolean(packet.hasParachute());
   }
 
   public static ParachuteSyncMessage decode(FriendlyByteBuf buf) {
@@ -49,9 +41,9 @@ public class ParachuteSyncMessage {
   public static void handle(ParachuteSyncMessage packet, Supplier<NetworkEvent.Context> context) {
     context.get().enqueueWork(() -> {
       assert Minecraft.getInstance().level != null;
-      Entity entity = Minecraft.getInstance().level.getEntity(packet.entityId);
+      Entity entity = Minecraft.getInstance().level.getEntity(packet.entityId());
       if (entity instanceof LivingEntity livingEntity) {
-        if (packet.hasParachute) {
+        if (packet.hasParachute()) {
           livingEntity.addEffect(new MobEffectInstance(ModMobEffects.PARACHUTE.get()));
         } else {
           livingEntity.removeEffect(ModMobEffects.PARACHUTE.get());
