@@ -2091,5 +2091,29 @@ public class ModItems {
     ArbitraryTooltips.registerTooltip(HANDCUFFS,
         new TranslatableComponent("handcuffs.information")
             .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(FIRST_AID_KIT,
+        new TranslatableComponent("first_aid_kit.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(ADRENALINE_SYRINGE,
+        new TranslatableComponent("adrenaline_syringe.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(SYRINGE,
+        new TranslatableComponent("syringe.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(BLOOD_SYRINGE,
+        new TranslatableComponent("blood_syringe.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(BANDAGE,
+        new TranslatableComponent("bandage.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(DIRTY_RAG,
+        new TranslatableComponent("dirty_rag.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(BLOODY_RAG,
+        new TranslatableComponent("bloody_rag.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(CLEAN_RAG,
+        new TranslatableComponent("clean_rag.information")
+            .withStyle(ChatFormatting.GRAY));
   }
 }

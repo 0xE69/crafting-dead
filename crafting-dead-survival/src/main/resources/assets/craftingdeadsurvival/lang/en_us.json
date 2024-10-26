@@ -192,5 +192,8 @@
   "item.craftingdeadsurvival.screwdriver": "Screwdriver",
   "item.craftingdeadsurvival.multi_tool": "Multi Tool",
 
-  "can_opener.information": "Opens canned goods"
+  "can_opener.information": "Opens canned goods",
+  "splint.information": "Stabilizes broken limbs",
+  "rbi_syringe.information": "Causes infection",
+  "cure_syringe.information": "Cures infection"
 }

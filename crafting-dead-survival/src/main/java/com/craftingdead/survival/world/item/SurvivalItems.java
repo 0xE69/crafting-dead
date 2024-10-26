@@ -439,5 +439,14 @@ public class SurvivalItems {
     ArbitraryTooltips.registerTooltip(CAN_OPENER, canOpenerTooltip);
     ArbitraryTooltips.registerTooltip(SCREWDRIVER, canOpenerTooltip);
     ArbitraryTooltips.registerTooltip(MULTI_TOOL, canOpenerTooltip);
+    ArbitraryTooltips.registerTooltip(SPLINT,
+        new TranslatableComponent("splint.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(RBI_SYRINGE,
+        new TranslatableComponent("rbi_syringe.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(CURE_SYRINGE,
+        new TranslatableComponent("cure_syringe.information")
+            .withStyle(ChatFormatting.GRAY));
   }
 }

@@ -435,11 +435,20 @@
   "attachment_multiplier_type.accuracy": "Accuracy",
   "attachment_multiplier_type.zoom": "Zoom",
 
-  "grenade.information": "Shift-click to throw close",
   "storage_item.contents": "Contents",
   "handcuffs.handcuffed": "You've been handcuffed by %s",
   "bolt_cutters.free": "Your handcuffs were cut free by %s",
+  "handcuffs_key.removed": "The handcuffs are removed!",
+  "grenade.information": "Shift-click to throw close",
   "handcuffs.information": "Right-click on a player",
   "handcuffs_key.information": "Right-click on a handcuffed player",
-  "handcuffs_key.removed": "The handcuffs are removed!"
+  "first_aid_kit.information": "Restores health quickly",
+  "adrenaline_syringe.information": "Increases movement speed",
+  "syringe.information": "Unused syringe for filling",
+  "blood_syringe.information": "Heals a bit when used",
+  "bandage.information": "Heals a bit when applied",
+  "dirty_rag.information": "Worn cloth",
+  "bloody_rag.information": "Stained cloth",
+  "clean_rag.information": "Stops bleeding"
+
 }
