@@ -310,7 +310,7 @@ public class GunConfigurations {
           () -> GunConfiguration.builder()
               .aimable(false)
               .setFireDelayMs(2000)
-              .setDamage(7)
+              .setDamage(2)
               .setReloadDurationTicks(20 * 3)
               .setAccuracy(0.9F)
               .setRecoil(1.5F)
