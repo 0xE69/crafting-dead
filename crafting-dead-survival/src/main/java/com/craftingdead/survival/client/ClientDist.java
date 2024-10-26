@@ -22,6 +22,7 @@ import com.craftingdead.core.CraftingDead;
 import com.craftingdead.core.client.ClientConfig;
 import com.craftingdead.core.client.renderer.entity.grenade.GrenadeRenderer;
 import com.craftingdead.core.client.util.RenderUtil;
+import com.craftingdead.core.world.effect.ModMobEffects;
 import com.craftingdead.survival.CraftingDeadSurvival;
 import com.craftingdead.survival.ModDist;
 import com.craftingdead.survival.client.model.PipeBombModel;
@@ -31,7 +32,6 @@ import com.craftingdead.survival.client.renderer.entity.AdvancedZombieRenderer;
 import com.craftingdead.survival.client.renderer.entity.GiantZombieRenderer;
 import com.craftingdead.survival.client.renderer.entity.SupplyDropRenderer;
 import com.craftingdead.survival.particles.SurvivalParticleTypes;
-import com.craftingdead.survival.world.effect.SurvivalMobEffects;
 import com.craftingdead.survival.world.entity.SurvivalEntityTypes;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -137,7 +137,7 @@ public class ClientDist implements ModDist {
           float healthPercentage =
               player.entity().getHealth() / player.entity().getMaxHealth();
           if (clientConfig.displayBlood.get() && healthPercentage < 1.0F
-              && player.entity().hasEffect(SurvivalMobEffects.BLEEDING.get())) {
+              && player.entity().hasEffect(ModMobEffects.BLEEDING.get())) {
             renderBlood(event.getWindow().getGuiScaledWidth(),
                 event.getWindow().getGuiScaledHeight(), healthPercentage);
           }

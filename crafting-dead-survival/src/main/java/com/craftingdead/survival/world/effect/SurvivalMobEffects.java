@@ -32,9 +32,6 @@ public class SurvivalMobEffects {
   public static final RegistryObject<MobEffect> INFECTION =
       deferredRegister.register("infection", InfectionMobEffect::new);
 
-  public static final RegistryObject<MobEffect> BLEEDING =
-      deferredRegister.register("bleeding", BleedingMobEffect::new);
-
   public static final RegistryObject<MobEffect> BROKEN_LEG =
       deferredRegister.register("broken_leg", BrokenLegMobEffect::new);
 }

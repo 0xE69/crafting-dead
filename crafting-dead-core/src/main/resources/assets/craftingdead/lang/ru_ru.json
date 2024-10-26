@@ -19,6 +19,7 @@
   "options.craftingdead.client.kill_sound": "Звук убийства",
 
   "effect.craftingdead.adrenaline":"Адреналин",
+  "effect.craftingdead.bleeding":"Кровотечение",
   "effect.craftingdead.flash_blindness":"Световое ослепление",
   "effect.craftingdead.parachute": "Парашют",
 
@@ -47,9 +48,12 @@
 
   "action.craftingdead.use_syringe.message":"Вывод жидкости",
   "action.craftingdead.use_first_aid_kit.message":"Исцеление",
+  "action.craftingdead.use_clean_rag.message":"Прочищение раны",
+  "action.craftingdead.wash_rag.message":"Промывка тряпки",
   "action.craftingdead.use_adrenaline_syringe.message":"Введение инъекции Адреналина",
   "action.craftingdead.use_blood_syringe.message":"Введение инъекции Крови",
   "action.craftingdead.use_bandage.message":"Наложение повязки",
+  "action.craftingdead.shred_clothing.message":"Рвение ткани",
 
   "itemGroup.craftingdead.cosmetics": "Crafting Dead: Одежда",
   "itemGroup.craftingdead.medical": "Crafting Dead: Медицина",
@@ -190,6 +194,9 @@
   "item.craftingdead.steel_bat": "Стальная бита",
   "item.craftingdead.bowie_knife": "Охотничий нож",
   "item.craftingdead.first_aid_kit": "Аптечка первой помощи",
+  "item.craftingdead.dirty_rag": "Грязная тряпка",
+  "item.craftingdead.bloody_rag": "Окровавленная тряпка",
+  "item.craftingdead.clean_rag": "Чистая тряпка",
   "item.craftingdead.adrenaline_syringe": "Адреналиновый шприц",
   "item.craftingdead.blood_syringe": "Окровавленный шприц",
   "item.craftingdead.bandage": "Повязка",

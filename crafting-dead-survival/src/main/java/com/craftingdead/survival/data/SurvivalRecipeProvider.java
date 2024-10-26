@@ -39,20 +39,20 @@ public class SurvivalRecipeProvider extends RecipeProvider {
   @Override
   protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
     ShapelessRecipeBuilder.shapeless(Items.STRING, 3)
-        .requires(Ingredient.of(SurvivalItems.CLEAN_RAG.get(), SurvivalItems.DIRTY_RAG.get()))
-        .unlockedBy("has_clean_rag", has(SurvivalItems.CLEAN_RAG.get()))
-        .unlockedBy("has_dirty_rag", has(SurvivalItems.DIRTY_RAG.get()))
+        .requires(Ingredient.of(ModItems.CLEAN_RAG.get(), ModItems.DIRTY_RAG.get()))
+        .unlockedBy("has_clean_rag", has(ModItems.CLEAN_RAG.get()))
+        .unlockedBy("has_dirty_rag", has(ModItems.DIRTY_RAG.get()))
         .save(consumer);
     ShapedRecipeBuilder.shaped(SurvivalItems.PIPE_BOMB.get())
         .pattern("bib")
         .pattern("igi")
         .pattern("bib")
         .define('i', Tags.Items.INGOTS_IRON)
-        .define('b', SurvivalItems.BLOODY_RAG.get())
+        .define('b', ModItems.BLOODY_RAG.get())
         .define('g', Tags.Items.GUNPOWDER)
-        .unlockedBy("has_bloody_rag", has(SurvivalItems.BLOODY_RAG.get()))
+        .unlockedBy("has_bloody_rag", has(ModItems.BLOODY_RAG.get()))
         .save(consumer);
-    ShapedRecipeBuilder.shaped(SurvivalItems.CLEAN_RAG.get())
+    ShapedRecipeBuilder.shaped(ModItems.CLEAN_RAG.get())
         .pattern("sss")
         .pattern("sss")
         .pattern("sss")
@@ -64,7 +64,7 @@ public class SurvivalRecipeProvider extends RecipeProvider {
         .pattern("srs")
         .pattern(" sr")
         .define('s', Items.STICK)
-        .define('r', Ingredient.of(SurvivalItems.CLEAN_RAG.get(), SurvivalItems.DIRTY_RAG.get()))
+        .define('r', Ingredient.of(ModItems.CLEAN_RAG.get(), ModItems.DIRTY_RAG.get()))
         .unlockedBy("has_stick", has(Items.STICK))
         .save(consumer);
 

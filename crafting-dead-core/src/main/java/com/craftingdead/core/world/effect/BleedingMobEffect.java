@@ -16,13 +16,12 @@
  * https://craftingdead.net/terms.php
  */
 
-package com.craftingdead.survival.world.effect;
+package com.craftingdead.core.world.effect;
 
+import com.craftingdead.core.world.damagesource.ModDamageSource;
 import java.util.ArrayList;
 import java.util.List;
 import com.craftingdead.core.world.item.ModItems;
-import com.craftingdead.survival.world.damagesource.SurvivalDamageSource;
-import com.craftingdead.survival.world.item.SurvivalItems;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.effect.MobEffect;
@@ -41,7 +40,7 @@ public class BleedingMobEffect extends MobEffect {
   @Override
   public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
     if (livingEntity.getHealth() > 1.0F) {
-      livingEntity.hurt(SurvivalDamageSource.BLEEDING, 1.0F);
+      livingEntity.hurt(ModDamageSource.bleeding(), 1.0F);
     }
   }
 
@@ -53,9 +52,9 @@ public class BleedingMobEffect extends MobEffect {
 
   @Override
   public List<ItemStack> getCurativeItems() {
-    List<ItemStack> items = new ArrayList<ItemStack>();
+    List<ItemStack> items = new ArrayList<>();
     items.add(new ItemStack(ModItems.BANDAGE::get));
-    items.add(new ItemStack(SurvivalItems.CLEAN_RAG::get));
+    items.add(new ItemStack(ModItems.CLEAN_RAG::get));
     items.add(new ItemStack(ModItems.FIRST_AID_KIT::get));
     return items;
   }

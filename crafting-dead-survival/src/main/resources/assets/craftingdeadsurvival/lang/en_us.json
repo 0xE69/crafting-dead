@@ -77,7 +77,6 @@
 
   "effect.craftingdeadsurvival.infection":"Infected",
   "effect.craftingdeadsurvival.broken_leg": "Broken Leg",
-  "effect.craftingdeadsurvival.bleeding":"Bleeding",
 
   "entity.craftingdeadsurvival.supply_drop": "Supply Drop",
   "entity.craftingdeadsurvival.pipe_bomb": "Pipe Bomb",
@@ -95,13 +94,10 @@
   "death.attack.infection":"%1$s died from RBI",
   "death.attack.bleeding":"%1$s bled to death",
 
-  "action.craftingdeadsurvival.use_clean_rag.message":"Cleaning wound",
   "action.craftingdeadsurvival.use_splint.message":"Applying splint",
-  "action.craftingdeadsurvival.wash_rag.message":"Washing rag",
   "action.craftingdeadsurvival.use_syringe_on_zombie.message":"Withdrawing RBI infection",
   "action.craftingdeadsurvival.use_cure_syringe.message":"Injecting cure",
   "action.craftingdeadsurvival.use_rbi_syringe.message":"Injecting RBI",
-  "action.craftingdeadsurvival.shred_clothing.message":"Shredding clothes",
   "action.craftingdeadsurvival.fill_water_canteen.message": "Filling water canteen",
 
   "itemGroup.craftingdeadsurvival": "Crafting Dead Survival",
@@ -109,9 +105,6 @@
   "item.craftingdeadsurvival.rbi_syringe": "RBI Syringe",
   "item.craftingdeadsurvival.cure_syringe": "RBI Cure Syringe",
   "item.craftingdeadsurvival.splint": "Makeshift Splint",
-  "item.craftingdeadsurvival.dirty_rag": "Dirty Rag",
-  "item.craftingdeadsurvival.bloody_rag": "Bloody Rag",
-  "item.craftingdeadsurvival.clean_rag": "Clean Rag",
 
   "item.craftingdeadsurvival.pipe_bomb": "Pipe Bomb",
   "item.craftingdeadsurvival.military_drop_radio": "Military Supply Drop Radio",

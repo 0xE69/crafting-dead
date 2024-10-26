@@ -5,7 +5,6 @@
 
   "effect.craftingdeadsurvival.infected":"Infectado",
   "effect.craftingdead.broken_leg": "Perna Quebrada",
-  "effect.craftingdead.bleeding":"Sangramento",
 
   "entity.craftingdeadsurvival.supply_drop": "Caixa de Suprimentos",
   "entity.craftingdeadsurvival.pipe_bomb": "Granada Improvisada",
@@ -25,9 +24,7 @@
   "item.craftingdeadsurvival.rbi_syringe": "Seringa RBI",
   "item.craftingdeadsurvival.cure_syringe": "Seringa de Cura da RBI",
   "item.craftingdeadsurvival.splint": "Tala Improvisada",
-  "item.craftingdeadsurvival.dirty_rag": "Tecido Sujo",
-  "item.craftingdeadsurvival.bloody_rag": "Tecido Ensanguentado",
-  "item.craftingdeadsurvival.clean_rag": "Tecido Limpo",
+
   "item.craftingdeadsurvival.military_drop_radio": "Rádio de Suprimentos Militares",
   "item.craftingdeadsurvival.medical_drop_radio": "Rádio de Suprimentos Médicos",
   "item.craftingdeadsurvival.advanced_zombie_spawn_egg": "Ovo gerador de Zumbi Avançado",

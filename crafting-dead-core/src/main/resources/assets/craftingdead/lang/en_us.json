@@ -74,6 +74,7 @@
   "options.craftingdead.server.explosives.smoke_grenade.deactivation_tick":"Smoke Grenade Deactivation Delay (Ticks)",
 
   "effect.craftingdead.adrenaline":"Adrenaline",
+  "effect.craftingdead.bleeding":"Bleeding",
   "effect.craftingdead.flash_blindness":"Flash Blindness",
   "effect.craftingdead.parachute": "Parachute",
 
@@ -103,9 +104,12 @@
 
   "action.craftingdead.use_syringe.message":"Withdrawing Fluid",
   "action.craftingdead.use_first_aid_kit.message":"Healing",
+  "action.craftingdead.use_clean_rag.message":"Cleaning wound",
+  "action.craftingdead.wash_rag.message":"Washing rag",
   "action.craftingdead.use_adrenaline_syringe.message":"Injecting Adrenaline",
   "action.craftingdead.use_blood_syringe.message":"Injecting Blood",
   "action.craftingdead.use_bandage.message":"Applying Bandage",
+  "action.craftingdead.shred_clothing.message":"Shredding clothes",
   "action.craftingdead.apply_handcuffs.message":"Applying Handcuffs",
 
   "itemGroup.craftingdead.cosmetics": "Crafting Dead Clothing",
@@ -247,6 +251,9 @@
   "item.craftingdead.steel_bat": "Steel Bat",
   "item.craftingdead.bowie_knife": "Bowie Knife",
   "item.craftingdead.first_aid_kit": "First Aid Kit",
+  "item.craftingdead.dirty_rag": "Dirty Rag",
+  "item.craftingdead.bloody_rag": "Bloody Rag",
+  "item.craftingdead.clean_rag": "Clean Rag",
   "item.craftingdead.adrenaline_syringe": "Adrenaline Syringe",
   "item.craftingdead.blood_syringe": "Blood Syringe",
   "item.craftingdead.bandage": "Bandage",

@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "craftingdeadsurvival:clean_rag"
+      "craftingdead:clean_rag"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "craftingdeadsurvival:clean_rag"
+        "recipe": "craftingdead:clean_rag"
       }
     }
   },
