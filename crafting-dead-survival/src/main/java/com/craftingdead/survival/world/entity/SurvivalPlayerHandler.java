@@ -18,6 +18,7 @@
 
 package com.craftingdead.survival.world.entity;
 
+import com.craftingdead.core.world.effect.ModMobEffects;
 import java.util.Random;
 import com.craftingdead.core.world.entity.extension.LivingHandlerType;
 import com.craftingdead.core.world.entity.extension.PlayerExtension;
@@ -80,9 +81,9 @@ public class SurvivalPlayerHandler implements PlayerHandler {
     var invulnerable = this.player.entity().getAbilities().invulnerable
         || this.player.level().getDifficulty() == Difficulty.PEACEFUL;
 
-    if (this.player.entity().hasEffect(SurvivalMobEffects.BLEEDING.get())
+    if (this.player.entity().hasEffect(ModMobEffects.BLEEDING.get())
         && (invulnerable || !CraftingDeadSurvival.serverConfig.bleedingEnabled.get())) {
-      this.player.entity().removeEffect(SurvivalMobEffects.BLEEDING.get());
+      this.player.entity().removeEffect(ModMobEffects.BLEEDING.get());
     }
 
     if (this.player.entity().hasEffect(SurvivalMobEffects.BROKEN_LEG.get()) &&
@@ -124,12 +125,12 @@ public class SurvivalPlayerHandler implements PlayerHandler {
 
     if (!invulnerable
         && CraftingDeadSurvival.serverConfig.bleedingEnabled.get()
-        && !this.player.entity().hasEffect(SurvivalMobEffects.BLEEDING.get())
+        && !this.player.entity().hasEffect(ModMobEffects.BLEEDING.get())
         && (source.getDirectEntity() != null || source.isExplosion())) {
       var bleedChance = 0.1F * amount;
       if (random.nextFloat() < bleedChance
           && this.player.entity().addEffect(
-              new MobEffectInstance(SurvivalMobEffects.BLEEDING.get(), 9999999))) {
+              new MobEffectInstance(ModMobEffects.BLEEDING.get(), 9999999))) {
         this.player.entity().displayClientMessage(new TranslatableComponent("message.bleeding")
             .withStyle(ChatFormatting.RED, ChatFormatting.BOLD), true);
       }

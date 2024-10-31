@@ -22,7 +22,6 @@ import java.util.Random;
 import org.slf4j.Logger;
 import com.craftingdead.core.event.GunEvent;
 import com.craftingdead.core.event.LivingExtensionEvent;
-import com.craftingdead.core.tags.ModItemTags;
 import com.craftingdead.core.world.action.ActionTypes;
 import com.craftingdead.core.world.action.item.EntityItemAction;
 import com.craftingdead.core.world.entity.extension.BasicLivingExtension;
@@ -84,7 +83,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.living.LivingPackSizeEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -317,16 +315,6 @@ public class CraftingDeadSurvival {
       }
 
       extension.registerHandler(ZombieHandler.TYPE, handler);
-    }
-  }
-
-  @SubscribeEvent
-  public void handleRightClickItem(PlayerInteractEvent.RightClickItem event) {
-    if (!event.getWorld().isClientSide()
-        && event.getItemStack().is(ModItemTags.CLOTHING)) {
-      var extension = PlayerExtension.getOrThrow(event.getPlayer());
-      SurvivalActionTypes.SHRED_CLOTHING.get().createAction(extension, event.getHand())
-          .ifPresent(action -> extension.performAction(action, true));
     }
   }
 

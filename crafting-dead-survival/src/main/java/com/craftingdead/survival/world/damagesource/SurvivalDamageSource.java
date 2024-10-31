@@ -23,6 +23,4 @@ import net.minecraft.world.damagesource.DamageSource;
 public class SurvivalDamageSource {
 
   public static final DamageSource INFECTION = new DamageSource("infection").bypassArmor();
-
-  public static final DamageSource BLEEDING = new DamageSource("bleeding").bypassArmor();
 }

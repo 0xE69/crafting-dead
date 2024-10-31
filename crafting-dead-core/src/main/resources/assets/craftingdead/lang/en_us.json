@@ -74,6 +74,7 @@
   "options.craftingdead.server.explosives.smoke_grenade.deactivation_tick":"Smoke Grenade Deactivation Delay (Ticks)",
 
   "effect.craftingdead.adrenaline":"Adrenaline",
+  "effect.craftingdead.bleeding":"Bleeding",
   "effect.craftingdead.flash_blindness":"Flash Blindness",
   "effect.craftingdead.parachute": "Parachute",
 
@@ -103,9 +104,12 @@
 
   "action.craftingdead.use_syringe.message":"Withdrawing Fluid",
   "action.craftingdead.use_first_aid_kit.message":"Healing",
+  "action.craftingdead.use_clean_rag.message":"Cleaning wound",
+  "action.craftingdead.wash_rag.message":"Washing rag",
   "action.craftingdead.use_adrenaline_syringe.message":"Injecting Adrenaline",
   "action.craftingdead.use_blood_syringe.message":"Injecting Blood",
   "action.craftingdead.use_bandage.message":"Applying Bandage",
+  "action.craftingdead.shred_clothing.message":"Shredding clothes",
   "action.craftingdead.apply_handcuffs.message":"Applying Handcuffs",
 
   "itemGroup.craftingdead.cosmetics": "Crafting Dead Clothing",
@@ -247,6 +251,9 @@
   "item.craftingdead.steel_bat": "Steel Bat",
   "item.craftingdead.bowie_knife": "Bowie Knife",
   "item.craftingdead.first_aid_kit": "First Aid Kit",
+  "item.craftingdead.dirty_rag": "Dirty Rag",
+  "item.craftingdead.bloody_rag": "Bloody Rag",
+  "item.craftingdead.clean_rag": "Clean Rag",
   "item.craftingdead.adrenaline_syringe": "Adrenaline Syringe",
   "item.craftingdead.blood_syringe": "Blood Syringe",
   "item.craftingdead.bandage": "Bandage",
@@ -428,11 +435,20 @@
   "attachment_multiplier_type.accuracy": "Accuracy",
   "attachment_multiplier_type.zoom": "Zoom",
 
-  "grenade.information": "Shift-click to throw close",
   "storage_item.contents": "Contents",
   "handcuffs.handcuffed": "You've been handcuffed by %s",
   "bolt_cutters.free": "Your handcuffs were cut free by %s",
+  "handcuffs_key.removed": "The handcuffs are removed!",
+  "grenade.information": "Shift-click to throw close",
   "handcuffs.information": "Right-click on a player",
   "handcuffs_key.information": "Right-click on a handcuffed player",
-  "handcuffs_key.removed": "The handcuffs are removed!"
+  "first_aid_kit.information": "Restores health quickly",
+  "adrenaline_syringe.information": "Increases movement speed",
+  "syringe.information": "Unused syringe for filling",
+  "blood_syringe.information": "Heals a bit when used",
+  "bandage.information": "Heals a bit when applied",
+  "dirty_rag.information": "Worn cloth",
+  "bloody_rag.information": "Stained cloth",
+  "clean_rag.information": "Stops bleeding"
+
 }

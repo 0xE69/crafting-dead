@@ -37,8 +37,11 @@ public class KeyboardHandlerMixin {
       CallbackInfo ci) {
 
     var minecraft = Minecraft.getInstance();
-    var playerExtension = PlayerExtension.get(minecraft.player);
+    if (minecraft.player == null) {
+      return;
+    }
 
+    var playerExtension = PlayerExtension.get(minecraft.player);
     if (playerExtension == null) {
       return;
     }
@@ -69,3 +72,4 @@ public class KeyboardHandlerMixin {
     }
   }
 }
+

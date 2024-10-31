@@ -31,6 +31,7 @@ public class ModDamageSource {
 
   public static final String BULLET_HEADSHOT_DAMAGE_TYPE = "bullet.headshot";
   public static final String BULLET_BODY_DAMAGE_TYPE = "bullet";
+  public static final String BLEEDING = "bleeding";
 
   public static DamageSource gun(LivingEntity source, boolean headshot) {
     var messageId = headshot ? BULLET_HEADSHOT_DAMAGE_TYPE : BULLET_BODY_DAMAGE_TYPE;
@@ -41,6 +42,10 @@ public class ModDamageSource {
 
   public static DamageSource grenade(Grenade grenade, @Nullable Entity thrower) {
     return new IndirectEntityDamageSource("grenade", grenade, thrower).setExplosion();
+  }
+
+  public static DamageSource bleeding() {
+    return new DamageSource(BLEEDING).bypassArmor();
   }
 
   /**

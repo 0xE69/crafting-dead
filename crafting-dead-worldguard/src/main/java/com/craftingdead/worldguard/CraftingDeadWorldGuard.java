@@ -18,6 +18,7 @@
 
 package com.craftingdead.worldguard;
 
+import com.craftingdead.core.world.effect.ModMobEffects;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
@@ -150,8 +151,8 @@ public class CraftingDeadWorldGuard extends JavaPlugin {
       }
     }
 
-    if (stopBleeding && hasEffect(extension.entity(), SurvivalMobEffects.BLEEDING.get())) {
-      removeEffect(extension.entity(), SurvivalMobEffects.BLEEDING.get());
+    if (stopBleeding && hasEffect(extension.entity(), ModMobEffects.BLEEDING.get())) {
+      removeEffect(extension.entity(), ModMobEffects.BLEEDING.get());
     }
 
     if (stopBrokenLegs && hasEffect(extension.entity(), SurvivalMobEffects.BROKEN_LEG.get())) {
@@ -185,7 +186,7 @@ public class CraftingDeadWorldGuard extends JavaPlugin {
         flag = INFECTION;
       } else if (effect == SurvivalMobEffects.BROKEN_LEG.get()) {
         flag = BROKEN_LEGS;
-      } else if (effect == SurvivalMobEffects.BLEEDING.get()) {
+      } else if (effect == ModMobEffects.BLEEDING.get()) {
         flag = BLEEDING;
       }
 

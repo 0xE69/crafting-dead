@@ -18,26 +18,31 @@
 
 package com.craftingdead.core.world.action;
 
-import java.util.Optional;
-import java.util.function.Supplier;
 import com.craftingdead.core.CraftingDead;
+import com.craftingdead.core.tags.ModItemTags;
+import com.craftingdead.core.world.action.item.BlockItemActionType;
 import com.craftingdead.core.world.action.item.EntityItemActionType;
 import com.craftingdead.core.world.action.reload.MagazineReloadAction;
 import com.craftingdead.core.world.action.reload.RefillableReloadAction;
 import com.craftingdead.core.world.effect.ModMobEffects;
 import com.craftingdead.core.world.entity.extension.PlayerExtension;
 import com.craftingdead.core.world.item.ModItems;
-import com.google.common.base.Predicates;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
@@ -68,6 +73,26 @@ public class ActionTypes {
       deferredRegister.register("remove_magazine",
           () -> new SimpleActionType<>(RemoveMagazineAction::new, true));
 
+  public static final RegistryObject<EntityItemActionType<?>> SHRED_CLOTHING =
+      deferredRegister.register("shred_clothing",
+          () -> EntityItemActionType.builder(TargetSelector.SELF_ONLY)
+              .forItem(itemStack -> itemStack.is(ModItemTags.CLOTHING))
+              .customAction((performer, target) -> {
+                var random = target.random();
+                int randomRagAmount = random.nextInt(3) + 3;
+
+                for (int i = 0; i < randomRagAmount; i++) {
+                  if (random.nextBoolean()) {
+                    target.entity().spawnAtLocation(
+                        new ItemStack(ModItems.CLEAN_RAG::get));
+                  } else {
+                    target.entity().spawnAtLocation(
+                        new ItemStack(ModItems.DIRTY_RAG::get));
+                  }
+                }
+              }, 1.0F)
+              .build());
+
   public static final RegistryObject<EntityItemActionType<?>> USE_SYRINGE =
       deferredRegister.register("use_syringe",
           () -> EntityItemActionType
@@ -80,7 +105,7 @@ public class ActionTypes {
 
                 var targetEntity = target.entity();
                 if (targetEntity.getHealth() > 4) {
-                  return Optional.ofNullable(target);
+                  return Optional.of(target);
                 }
 
                 if (performer.entity() instanceof Player player) {
@@ -135,11 +160,31 @@ public class ActionTypes {
               .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0))
               .build());
 
+  public static final RegistryObject<EntityItemActionType<?>> USE_CLEAN_RAG =
+      deferredRegister.register("use_clean_rag",
+          () -> EntityItemActionType
+              .builder(TargetSelector.SELF_OR_OTHERS.hasEffect(ModMobEffects.BLEEDING))
+              .forItem(ModItems.CLEAN_RAG)
+              .duration(16)
+              .resultItem(ModItems.BLOODY_RAG)
+              .build());
+
+  public static final RegistryObject<BlockItemActionType> WASH_RAG =
+      deferredRegister.register("wash_rag",
+          () -> BlockItemActionType.builder()
+              .forItem(itemStack -> itemStack.is(ModItems.DIRTY_RAG.get())
+                  || itemStack.is(ModItems.BLOODY_RAG.get()))
+              .resultItem(ModItems.CLEAN_RAG)
+              .consumeItemInCreative(true)
+              .finishSound(SoundEvents.BUCKET_FILL)
+              .forFluid(FluidTags.WATER)
+              .build());
+
   public static final RegistryObject<EntityItemActionType<?>> APPLY_HANDCUFFS =
       deferredRegister.register("apply_handcuffs",
           () -> EntityItemActionType.builder(TargetSelector.OTHERS_ONLY
               .players()
-              .filter(Predicates.not(PlayerExtension::isHandcuffed)))
+              .filter(((Predicate<PlayerExtension<?>>) PlayerExtension::isHandcuffed).negate()))
               .forItem(ModItems.HANDCUFFS)
               .customAction((performer, target) -> {
                 target.setHandcuffs(performer.mainHandItem().copy());

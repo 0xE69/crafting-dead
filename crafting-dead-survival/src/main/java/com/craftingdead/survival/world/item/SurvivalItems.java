@@ -147,15 +147,6 @@ public class SurvivalItems {
           .stacksTo(3)
           .tab(TAB)));
 
-  public static final RegistryObject<Item> DIRTY_RAG = deferredRegister.register("dirty_rag",
-      () -> new ActionItem(SurvivalActionTypes.WASH_RAG, new Item.Properties().tab(TAB).stacksTo(3)));
-
-  public static final RegistryObject<Item> BLOODY_RAG = deferredRegister.register("bloody_rag",
-      () -> new ActionItem(SurvivalActionTypes.WASH_RAG, new Item.Properties().tab(TAB).stacksTo(3)));
-
-  public static final RegistryObject<Item> CLEAN_RAG = deferredRegister.register("clean_rag",
-      () -> new ActionItem(SurvivalActionTypes.USE_CLEAN_RAG, new Item.Properties().tab(TAB).stacksTo(3)));
-
   public static final RegistryObject<Item> SPLINT = deferredRegister.register("splint",
       () -> new ActionItem(SurvivalActionTypes.USE_SPLINT, new Item.Properties()
           .stacksTo(3)
@@ -448,5 +439,14 @@ public class SurvivalItems {
     ArbitraryTooltips.registerTooltip(CAN_OPENER, canOpenerTooltip);
     ArbitraryTooltips.registerTooltip(SCREWDRIVER, canOpenerTooltip);
     ArbitraryTooltips.registerTooltip(MULTI_TOOL, canOpenerTooltip);
+    ArbitraryTooltips.registerTooltip(SPLINT,
+        new TranslatableComponent("splint.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(RBI_SYRINGE,
+        new TranslatableComponent("rbi_syringe.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(CURE_SYRINGE,
+        new TranslatableComponent("cure_syringe.information")
+            .withStyle(ChatFormatting.GRAY));
   }
 }

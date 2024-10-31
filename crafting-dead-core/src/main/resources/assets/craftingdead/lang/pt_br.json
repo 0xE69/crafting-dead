@@ -28,6 +28,9 @@
   "itemGroup.craftingdead.combat": "Crafting Dead Combate",
 
   "item.craftingdead.first_aid_kit": "Kit de Primeiros Socorros",
+  "item.craftingdead.dirty_rag": "Tecido Sujo",
+  "item.craftingdead.bloody_rag": "Tecido Ensanguentado",
+  "item.craftingdead.clean_rag": "Tecido Limpo",
   "item.craftingdead.adrenaline_syringe": "Seringa de Adrenalina",
   "item.craftingdead.syringe": "Seringa Vazia",
   "item.craftingdead.crowbar": "Pé de Cabra",
@@ -299,6 +302,8 @@
   "item.craftingdead.large_ghillie_backpack": "Mochila Ghillie Grande",
   "item.craftingdead.tan_gun_bag": "Mochila de Armas Bronzeada",
   "item.craftingdead.grey_gun_bag": "Mochila de Armas Cinza",
+
+  "effect.craftingdead.bleeding":"Sangramento",
 
   "hat.headshot_reduction": "Proteção contra headshot: ",
   "hat.immune_to_flashes": "Imune a flashes",

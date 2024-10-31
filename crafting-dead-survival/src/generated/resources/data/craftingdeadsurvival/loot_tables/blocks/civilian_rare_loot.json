@@ -8,17 +8,17 @@
         {
           "type": "minecraft:item",
           "weight": 20,
-          "name": "craftingdeadsurvival:bloody_rag"
+          "name": "craftingdead:bloody_rag"
         },
         {
           "type": "minecraft:item",
           "weight": 20,
-          "name": "craftingdeadsurvival:dirty_rag"
+          "name": "craftingdead:dirty_rag"
         },
         {
           "type": "minecraft:item",
           "weight": 20,
-          "name": "craftingdeadsurvival:clean_rag"
+          "name": "craftingdead:clean_rag"
         },
         {
           "type": "minecraft:item",

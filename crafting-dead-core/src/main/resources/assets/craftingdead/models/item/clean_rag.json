@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "craftingdeadsurvival:item/bloody_rag"
+    "layer0": "craftingdead:item/clean_rag"
   }
 }

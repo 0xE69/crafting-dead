@@ -16,7 +16,6 @@
 
   "effect.craftingdeadsurvival.infection":"Заражён",
   "effect.craftingdeadsurvival.broken_leg": "Перелом ноги",
-  "effect.craftingdeadsurvival.bleeding":"Кровотечение",
 
   "entity.craftingdeadsurvival.supply_drop": "Поставка сброса",
   "entity.craftingdeadsurvival.pipe_bomb": "Трубковая граната",
@@ -35,22 +34,16 @@
   "death.attack.infection":"%1$s умер от RBI",
   "death.attack.bleeding":"%1$s умер от потери крови",
 
-  "action.craftingdeadsurvival.use_clean_rag.message":"Прочищение раны",
   "action.craftingdeadsurvival.use_splint.message":"Наложение шины",
-  "action.craftingdeadsurvival.wash_rag.message":"Промывка тряпки",
   "action.craftingdeadsurvival.use_syringe_on_zombie.message":"Удаление заражения RBI",
   "action.craftingdeadsurvival.use_cure_syringe.message":"Внутривенное лекарство",
   "action.craftingdeadsurvival.use_rbi_syringe.message":"Введение инъекции RBI",
-  "action.craftingdeadsurvival.shred_clothing.message":"Рвение ткани",
 
   "itemGroup.craftingdeadsurvival": "Crafting Dead Survival",
 
   "item.craftingdeadsurvival.rbi_syringe": "RBI шприц",
   "item.craftingdeadsurvival.cure_syringe": "Лекарственный RBI шприц",
   "item.craftingdeadsurvival.splint": "Временная шина",
-  "item.craftingdeadsurvival.dirty_rag": "Грязная тряпка",
-  "item.craftingdeadsurvival.bloody_rag": "Окровавленная тряпка",
-  "item.craftingdeadsurvival.clean_rag": "Чистая тряпка",
 
   "item.craftingdeadsurvival.pipe_bomb": "Трубковая граната",
   "item.craftingdeadsurvival.military_drop_radio": "Радио: Гражданская поставка сброса",

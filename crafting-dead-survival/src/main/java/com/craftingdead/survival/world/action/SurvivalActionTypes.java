@@ -18,7 +18,6 @@
 
 package com.craftingdead.survival.world.action;
 
-import com.craftingdead.core.tags.ModItemTags;
 import com.craftingdead.core.world.action.ActionType;
 import com.craftingdead.core.world.action.ActionTypes;
 import com.craftingdead.core.world.action.TargetSelector;
@@ -34,7 +33,6 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -43,51 +41,11 @@ public class SurvivalActionTypes {
   public static final DeferredRegister<ActionType<?>> deferredRegister =
       DeferredRegister.create(ActionTypes.REGISTRY_KEY, CraftingDeadSurvival.ID);
 
-  public static final RegistryObject<EntityItemActionType<?>> SHRED_CLOTHING =
-      deferredRegister.register("shred_clothing",
-          () -> EntityItemActionType.builder(TargetSelector.SELF_ONLY)
-              .forItem(itemStack -> itemStack.is(ModItemTags.CLOTHING))
-              .customAction((performer, target) -> {
-                var random = target.random();
-                int randomRagAmount = random.nextInt(3) + 3;
-
-                for (int i = 0; i < randomRagAmount; i++) {
-                  if (random.nextBoolean()) {
-                    target.entity().spawnAtLocation(
-                        new ItemStack(SurvivalItems.CLEAN_RAG::get));
-                  } else {
-                    target.entity().spawnAtLocation(
-                        new ItemStack(SurvivalItems.DIRTY_RAG::get));
-                  }
-                }
-              }, 1.0F)
-              .build());
-
   public static final RegistryObject<EntityItemActionType<?>> USE_SPLINT =
       deferredRegister.register("use_splint",
           () -> EntityItemActionType
               .builder(TargetSelector.SELF_OR_OTHERS.hasEffect(SurvivalMobEffects.BROKEN_LEG))
               .forItem(SurvivalItems.SPLINT)
-              .build());
-
-  public static final RegistryObject<EntityItemActionType<?>> USE_CLEAN_RAG =
-      deferredRegister.register("use_clean_rag",
-          () -> EntityItemActionType
-              .builder(TargetSelector.SELF_OR_OTHERS.hasEffect(SurvivalMobEffects.BLEEDING))
-              .forItem(SurvivalItems.CLEAN_RAG)
-              .duration(16)
-              .resultItem(SurvivalItems.BLOODY_RAG)
-              .build());
-
-  public static final RegistryObject<BlockItemActionType> WASH_RAG =
-      deferredRegister.register("wash_rag",
-          () -> BlockItemActionType.builder()
-              .forItem(itemStack -> itemStack.is(SurvivalItems.DIRTY_RAG.get())
-                  || itemStack.is(SurvivalItems.BLOODY_RAG.get()))
-              .resultItem(SurvivalItems.CLEAN_RAG)
-              .consumeItemInCreative(true)
-              .finishSound(SoundEvents.BUCKET_FILL)
-              .forFluid(FluidTags.WATER)
               .build());
 
   public static final RegistryObject<EntityItemActionType<?>> USE_SYRINGE_ON_ZOMBIE =

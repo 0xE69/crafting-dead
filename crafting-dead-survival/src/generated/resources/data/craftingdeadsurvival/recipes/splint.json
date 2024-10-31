@@ -11,10 +11,10 @@
     },
     "r": [
       {
-        "item": "craftingdeadsurvival:clean_rag"
+        "item": "craftingdead:clean_rag"
       },
       {
-        "item": "craftingdeadsurvival:dirty_rag"
+        "item": "craftingdead:dirty_rag"
       }
     ]
   },

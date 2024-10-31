@@ -40,6 +40,9 @@ public class ModMobEffects {
   public static final RegistryObject<MobEffect> ADRENALINE =
       deferredRegister.register("adrenaline", AdrenalineMobEffect::new);
 
+  public static final RegistryObject<MobEffect> BLEEDING =
+      deferredRegister.register("bleeding", BleedingMobEffect::new);
+
   public static final RegistryObject<MobEffect> PARACHUTE =
       deferredRegister.register("parachute", ParachuteMobEffect::new);
 

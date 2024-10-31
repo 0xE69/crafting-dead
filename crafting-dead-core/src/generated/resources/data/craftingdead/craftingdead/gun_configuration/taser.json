@@ -8,6 +8,6 @@
   "accuracy_percent": 0.9,
   "recoil": 1.5,
   "fire_delay_ms": 2000,
-  "damage": 7.0,
+  "damage": 2.0,
   "reload_duration_ticks": 60
 }

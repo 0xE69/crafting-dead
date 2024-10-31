@@ -25,10 +25,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class DamageHandcuffsMessage {
-
-  public DamageHandcuffsMessage() {
-  }
+public record DamageHandcuffsMessage() {
 
   public void encode(FriendlyByteBuf buf) {
   }
@@ -51,3 +48,4 @@ public class DamageHandcuffsMessage {
     context.setPacketHandled(true);
   }
 }
+

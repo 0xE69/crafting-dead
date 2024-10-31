@@ -76,7 +76,6 @@
 
   "effect.craftingdeadsurvival.infection":"感染",
   "effect.craftingdeadsurvival.broken_leg": "骨折",
-  "effect.craftingdeadsurvival.bleeding":"流血",
 
   "entity.craftingdeadsurvival.supply_drop": "补给空投",
   "entity.craftingdeadsurvival.pipe_bomb": "管道炸弹",
@@ -94,22 +93,16 @@
   "death.attack.infection":"%1$s死于搜索不到",
   "death.attack.bleeding":"%1$s流血过多而死",
 
-  "action.craftingdeadsurvival.use_clean_rag.message":"正在清洁伤口",
   "action.craftingdeadsurvival.use_splint.message":"正在使用夹板",
-  "action.craftingdeadsurvival.wash_rag.message":"正在清洗布料",
   "action.craftingdeadsurvival.use_syringe_on_zombie.message":"正在抽取丧尸病毒",
   "action.craftingdeadsurvival.use_cure_syringe.message":"正在注射丧尸病毒解药",
   "action.craftingdeadsurvival.use_rbi_syringe.message":"正在注射丧尸病毒",
-  "action.craftingdeadsurvival.shred_clothing.message":"正在撕扯衣服",
 
   "itemGroup.craftingdeadsurvival": "行尸走肉：生存",
 
   "item.craftingdeadsurvival.rbi_syringe": "丧尸病毒注射器",
   "item.craftingdeadsurvival.cure_syringe": "丧尸病毒解药注射器",
   "item.craftingdeadsurvival.splint": "应急骨折夹板",
-  "item.craftingdeadsurvival.dirty_rag": "肮脏布料",
-  "item.craftingdeadsurvival.bloody_rag": "血腥布料",
-  "item.craftingdeadsurvival.clean_rag": "干净布料",
 
   "item.craftingdeadsurvival.pipe_bomb": "管道炸弹",
   "item.craftingdeadsurvival.military_drop_radio": "军用物资空投电台",
