@@ -617,6 +617,106 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:flask"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_iced_tea"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:iced_tea"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_iron_brew"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:iron_brew"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_juice_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:juice_pouch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_lemon_soda"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:lemon_soda"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_milk_carton"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:milk_carton"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_orange_soda"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:orange_soda"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_pepe_soda"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:pepe_soda"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_sprite"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:sprite"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_zombie_energy"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:zombie_energy"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "name": "craftingdeadsurvival:empty_flask"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 10,
           "name": "craftingdeadsurvival:power_bar"
         },
