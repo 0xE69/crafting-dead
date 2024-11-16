@@ -38,6 +38,56 @@
         {
           "type": "minecraft:item",
           "weight": 10,
+          "name": "craftingdeadsurvival:empty_flask"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "craftingdeadsurvival:flask"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "craftingdeadsurvival:empty_iced_tea"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "craftingdeadsurvival:iced_tea"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "craftingdeadsurvival:empty_pepe_soda"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "craftingdeadsurvival:pepe_soda"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "craftingdeadsurvival:empty_sprite"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "craftingdeadsurvival:sprite"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "craftingdeadsurvival:empty_zombie_energy"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "craftingdeadsurvival:zombie_energy"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
           "name": "craftingdead:black_tactical_vest"
         },
         {

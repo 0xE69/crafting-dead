@@ -148,6 +148,11 @@
         {
           "type": "minecraft:item",
           "weight": 10,
+          "name": "craftingdeadsurvival:empty_flask"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
           "name": "minecraft:bread"
         },
         {
