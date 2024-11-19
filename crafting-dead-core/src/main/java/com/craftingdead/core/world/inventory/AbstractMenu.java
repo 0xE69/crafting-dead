@@ -18,6 +18,7 @@
 
 package com.craftingdead.core.world.inventory;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.Container;
@@ -36,7 +37,7 @@ public abstract class AbstractMenu extends AbstractContainerMenu {
   protected Container playerInventory;
 
   public AbstractMenu(MenuType<?> type, int id, Container playerInventory,
-      IItemHandler contents) {
+      @Nullable IItemHandler contents) {
     super(type, id);
     this.playerInventory = playerInventory;
     this.contents = contents;
@@ -73,22 +74,28 @@ public abstract class AbstractMenu extends AbstractContainerMenu {
   }
 
   @Override
-  public ItemStack quickMoveStack(Player playerIn, int index) {
+  public @NotNull ItemStack quickMoveStack(@NotNull Player player, int index) {
     ItemStack itemstack = ItemStack.EMPTY;
     Slot slot = this.slots.get(index);
 
-    if (slot != null && slot.hasItem()) {
+    if (slot.hasItem()) {
       ItemStack stack = slot.getItem();
       itemstack = stack.copy();
 
+      // Check if the clicked slot is in the main inventory (top-left to bottom-right processing)
       if (index < this.getContentsSize()) {
-        if (!this.moveItemStackTo(stack, this.getContentsSize(), this.slots.size(), true)) {
+        // Move from container inventory to player inventory
+        if (!this.moveItemStackTo(stack, this.getContentsSize(), this.slots.size(), false)) {
           return ItemStack.EMPTY;
         }
-      } else if (!this.moveItemStackTo(stack, 0, this.getContentsSize(), false)) {
-        return ItemStack.EMPTY;
+      } else {
+        // Move from player inventory to container inventory
+        if (!this.moveItemStackTo(stack, 0, this.getContentsSize(), false)) {
+          return ItemStack.EMPTY;
+        }
       }
 
+      // Handle emptying or updating the slot
       if (stack.isEmpty()) {
         slot.set(ItemStack.EMPTY);
       } else {
