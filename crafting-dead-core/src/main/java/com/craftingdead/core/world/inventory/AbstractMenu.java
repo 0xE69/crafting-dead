@@ -74,28 +74,22 @@ public abstract class AbstractMenu extends AbstractContainerMenu {
   }
 
   @Override
-  public @NotNull ItemStack quickMoveStack(@NotNull Player player, int index) {
+  public ItemStack quickMoveStack(Player playerIn, int index) {
     ItemStack itemstack = ItemStack.EMPTY;
     Slot slot = this.slots.get(index);
 
-    if (slot.hasItem()) {
+    if (slot != null && slot.hasItem()) {
       ItemStack stack = slot.getItem();
       itemstack = stack.copy();
 
-      // Check if the clicked slot is in the main inventory (top-left to bottom-right processing)
       if (index < this.getContentsSize()) {
-        // Move from container inventory to player inventory
-        if (!this.moveItemStackTo(stack, this.getContentsSize(), this.slots.size(), false)) {
+        if (!this.moveItemStackTo(stack, this.getContentsSize(), this.slots.size(), true)) {
           return ItemStack.EMPTY;
         }
-      } else {
-        // Move from player inventory to container inventory
-        if (!this.moveItemStackTo(stack, 0, this.getContentsSize(), false)) {
-          return ItemStack.EMPTY;
-        }
+      } else if (!this.moveItemStackTo(stack, 0, this.getContentsSize(), false)) {
+        return ItemStack.EMPTY;
       }
 
-      // Handle emptying or updating the slot
       if (stack.isEmpty()) {
         slot.set(ItemStack.EMPTY);
       } else {
