@@ -18,7 +18,6 @@
 
 package com.craftingdead.core.world.inventory;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.Container;
