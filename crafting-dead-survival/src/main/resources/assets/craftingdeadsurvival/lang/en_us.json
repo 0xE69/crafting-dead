@@ -1,6 +1,7 @@
 {
   "options.craftingdeadsurvival.client.display_blood": "Display Blood",
 
+  "options.craftingdeadsurvival.server.show_subtitles": "Show Subtitles",
   "options.craftingdeadsurvival.server.loot.enable": "Loot Enabled",
   "options.craftingdeadsurvival.server.loot.civilian_loot": "Civilian Loot Enabled",
   "options.craftingdeadsurvival.server.loot.civilian_rare_loot": "Civilian Rare Loot Enabled",
