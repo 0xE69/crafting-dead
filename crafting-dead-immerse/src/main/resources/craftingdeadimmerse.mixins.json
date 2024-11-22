@@ -1,23 +1,24 @@
 {
-    "required": true,
-    "package": "com.craftingdead.immerse.mixin",
-    "compatibilityLevel": "JAVA_17",
-    "refmap": "craftingdeadimmerse.refmap.json",
-    "client": [
-        "MinecraftMixin",
-        "GameRendererMixin",
-        "ItemInHandRendererAccessor",
-        "MultiPlayerGameModeMixin",
-        "KeyboardHandlerMixin"
-    ],
-    "mixins": [
-        "PlayerDataStorageMixin",
-        "FireBlockMixin",
-        "ServerPlayerMixin",
-        "MinecraftServerMixin",
-        "ChunkMapMixin"
-    ],
-    "injectors": {
-        "defaultRequire": 1
-    }
+  "required": true,
+  "package": "com.craftingdead.immerse.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "craftingdeadimmerse.refmap.json",
+  "client": [
+    "MinecraftMixin",
+    "GameRendererMixin",
+    "ItemInHandRendererAccessor",
+    "MultiPlayerGameModeMixin",
+    "KeyboardHandlerMixin"
+  ],
+  "mixins": [
+    "PlayerDataStorageMixin",
+    "FireBlockMixin",
+    "ServerPlayerMixin",
+    "MinecraftServerMixin",
+    "ChunkMapMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }
