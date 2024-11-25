@@ -408,6 +408,9 @@
 
   "item.modifiers.clothing":"When wearing:",
 
+  "item.craftingdead.damage": "Damage",
+  "item.craftingdead.durability": "Durability",
+
   "hat.headshot_reduction": "Headshot protection: ",
   "hat.immune_to_flashes": "Immune to flashes",
   "hat.immune_to_gas": "Immune to gas",

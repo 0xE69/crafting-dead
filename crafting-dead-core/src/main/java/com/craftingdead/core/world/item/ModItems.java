@@ -46,12 +46,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -1105,7 +1102,7 @@ public class ModItems {
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> FIRE_AXE = deferredRegister.register("fire_axe",
-      () -> new AxeItem(Tiers.IRON, 14, -2.4F, new Item.Properties()
+      () -> new ModAxeItem(Tiers.IRON, 14, -2.4F, new Item.Properties()
           .durability(100)
           .tab((COMBAT_TAB))));
 
@@ -1130,7 +1127,7 @@ public class ModItems {
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> SLEDGEHAMMER = deferredRegister.register("sledgehammer",
-      () -> new PickaxeItem(Tiers.IRON, 10, -2.4F,
+      () -> new ModPickaxeItem(Tiers.IRON, 10, -2.4F,
           new Item.Properties()
               .durability(110)
               .tab(COMBAT_TAB)));
@@ -1141,12 +1138,12 @@ public class ModItems {
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> SHOVEL = deferredRegister.register("shovel",
-      () -> new ShovelItem(Tiers.IRON, 8, -2.4F, new Item.Properties()
+      () -> new ModShovelItem(Tiers.IRON, 8, -2.4F, new Item.Properties()
           .durability(70)
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> HATCHET = deferredRegister.register("hatchet",
-      () -> new AxeItem(Tiers.IRON, 16, -2.4F, new Item.Properties()
+      () -> new ModAxeItem(Tiers.IRON, 16, -2.4F, new Item.Properties()
           .durability(40)
           .tab(COMBAT_TAB)));
 
@@ -1172,7 +1169,7 @@ public class ModItems {
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> PICKAXE = deferredRegister.register("pickaxe",
-      () -> new PickaxeItem(Tiers.IRON, 10, -2.4F, new Item.Properties()
+      () -> new ModPickaxeItem(Tiers.IRON, 10, -2.4F, new Item.Properties()
           .durability(210)
           .tab(COMBAT_TAB)));
 
