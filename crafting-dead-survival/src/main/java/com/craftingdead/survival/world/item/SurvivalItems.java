@@ -217,7 +217,8 @@ public class SurvivalItems {
 
   public static final RegistryObject<Item> EMPTY_FLASK =
       deferredRegister.register("empty_flask",
-          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
+          () -> new ActionItem(SurvivalActionTypes.FILL_FLASK,
+              new Item.Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> FLASK =
       deferredRegister.register("flask",

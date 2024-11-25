@@ -99,7 +99,8 @@
   "action.craftingdeadsurvival.use_syringe_on_zombie.message":"Withdrawing RBI infection",
   "action.craftingdeadsurvival.use_cure_syringe.message":"Injecting cure",
   "action.craftingdeadsurvival.use_rbi_syringe.message":"Injecting RBI",
-  "action.craftingdeadsurvival.fill_water_canteen.message": "Filling water canteen",
+  "action.craftingdeadsurvival.fill_water_canteen.message": "Filling Water Canteen",
+  "action.craftingdeadsurvival.fill_flask": "Filling Flask of Water",
 
   "itemGroup.craftingdeadsurvival": "Crafting Dead Survival",
 

@@ -85,4 +85,16 @@ public class SurvivalActionTypes {
               .resultItem(SurvivalItems.WATER_CANTEEN)
               .consumeItemInCreative(true)
               .build());
+
+  public static final RegistryObject<ItemActionType<?>> FILL_FLASK =
+      deferredRegister.register("fill_flask",
+          () -> BlockItemActionType.builder()
+              .durationSeconds(3)
+              .forFluid(FluidTags.WATER)
+              .forItem(SurvivalItems.EMPTY_FLASK)
+              .finishSound(SoundEvents.BOTTLE_FILL)
+              .resultItem(SurvivalItems.FLASK)
+              .consumeItemInCreative(true)
+              .build());
+
 }
