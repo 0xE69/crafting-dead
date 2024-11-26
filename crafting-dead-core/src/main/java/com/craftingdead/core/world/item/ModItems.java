@@ -2112,5 +2112,8 @@ public class ModItems {
     ArbitraryTooltips.registerTooltip(CLEAN_RAG,
         new TranslatableComponent("clean_rag.information")
             .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(PARACHUTE,
+        new TranslatableComponent("parachute.information")
+            .withStyle(ChatFormatting.GRAY));
   }
 }

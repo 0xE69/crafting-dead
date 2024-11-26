@@ -444,6 +444,7 @@
   "handcuffs.handcuffed": "You've been handcuffed by %s",
   "bolt_cutters.free": "Your handcuffs were cut free by %s",
   "handcuffs_key.removed": "The handcuffs are removed!",
+
   "grenade.information": "Shift-click to throw close",
   "handcuffs.information": "Right-click on a player",
   "handcuffs_key.information": "Right-click on a handcuffed player",
@@ -454,6 +455,6 @@
   "bandage.information": "Heals a bit when applied",
   "dirty_rag.information": "Worn cloth",
   "bloody_rag.information": "Stained cloth",
-  "clean_rag.information": "Stops bleeding"
-
+  "clean_rag.information": "Stops bleeding",
+  "parachute.information": "Slows descent for safe landing"
 }
