@@ -158,6 +158,7 @@ public class ServerConfig {
   public final ForgeConfigSpec.IntValue explosivesFlashGrenadeTicksBeforeDeactivation;
   public final ForgeConfigSpec.IntValue explosivesSmokeGrenadeTicksBeforeDeactivation;
   public final ForgeConfigSpec.BooleanValue explosivesDispenseGrenades;
+  public final ForgeConfigSpec.BooleanValue enableFireGrenadeSecondaryExplosion;
 
   private ServerConfig(ForgeConfigSpec.Builder builder) {
     this.hitMarkerMode = builder
@@ -520,6 +521,10 @@ public class ServerConfig {
           builder.translation("options.craftingdead.server.explosives.dispense_grenades")
               .comment("Enables dispensers being able to throw grenades")
               .define("dispenseGrenades", true);
+      this.enableFireGrenadeSecondaryExplosion =
+          builder.translation("options.craftingdead.server.explosives.fire_grenade_secondary_explosion")
+              .comment("Enables an additional explosion with a radius equal to the fire spread")
+              .define("fireGrenadeSecondaryExplosion", true);
     }
     builder.pop();
   }

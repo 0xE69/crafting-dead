@@ -72,6 +72,8 @@
   "options.craftingdead.server.explosives.decoy_grenade.deactivation_tick":"Decoy Grenade Deactivation Delay (Ticks)",
   "options.craftingdead.server.explosives.flash_grenade.deactivation_tick":"Flash Grenade Deactivation Delay (Ticks)",
   "options.craftingdead.server.explosives.smoke_grenade.deactivation_tick":"Smoke Grenade Deactivation Delay (Ticks)",
+  "options.craftingdead.server.explosives.dispense_grenades": "Explosives Dispense Grenades",
+  "options.craftingdead.server.explosives.fire_grenade_secondary_explosion": "Fire Grenade Secondary Explosion",
 
   "effect.craftingdead.adrenaline":"Adrenaline",
   "effect.craftingdead.bleeding":"Bleeding",
