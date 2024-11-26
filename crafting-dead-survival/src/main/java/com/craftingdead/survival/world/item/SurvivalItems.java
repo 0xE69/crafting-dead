@@ -526,27 +526,39 @@ public class SurvivalItems {
 
         @Override
         public boolean hasContainerItem(ItemStack stack) {
-          return true;
+          return !stack.isEmpty();
         }
 
         @Override
         public ItemStack getContainerItem(ItemStack itemStack) {
-          return itemStack.copy();
+          if (itemStack.isEmpty()) {
+            return ItemStack.EMPTY;
+          }
+          // Increment damage directly and check limits
+          var copy = itemStack.copy();
+          copy.setDamageValue(copy.getDamageValue() + 1);
+          return copy.getDamageValue() >= copy.getMaxDamage() ? ItemStack.EMPTY : copy;
         }
       });
 
   public static final RegistryObject<Item> SCREWDRIVER =
       deferredRegister.register("screwdriver", () -> new ToolItem(
-          new Item.Properties().durability(4).tab(TAB)) {
+          new Item.Properties().durability(6).tab(TAB)) {
 
         @Override
         public boolean hasContainerItem(ItemStack stack) {
-          return true;
+          return !stack.isEmpty();
         }
 
         @Override
         public ItemStack getContainerItem(ItemStack itemStack) {
-          return itemStack.copy();
+          if (itemStack.isEmpty()) {
+            return ItemStack.EMPTY;
+          }
+          // Increment damage directly and check limits
+          var copy = itemStack.copy();
+          copy.setDamageValue(copy.getDamageValue() + 1);
+          return copy.getDamageValue() >= copy.getMaxDamage() ? ItemStack.EMPTY : copy;
         }
       });
 
@@ -556,12 +568,18 @@ public class SurvivalItems {
 
         @Override
         public boolean hasContainerItem(ItemStack stack) {
-          return true;
+          return !stack.isEmpty();
         }
 
         @Override
         public ItemStack getContainerItem(ItemStack itemStack) {
-          return itemStack.copy();
+          if (itemStack.isEmpty()) {
+            return ItemStack.EMPTY;
+          }
+          // Increment damage directly and check limits
+          var copy = itemStack.copy();
+          copy.setDamageValue(copy.getDamageValue() + 1);
+          return copy.getDamageValue() >= copy.getMaxDamage() ? ItemStack.EMPTY : copy;
         }
       });
 
