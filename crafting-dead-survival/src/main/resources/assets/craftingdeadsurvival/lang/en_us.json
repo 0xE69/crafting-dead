@@ -203,7 +203,7 @@
   "item.craftingdeadsurvival.consumable.water_info": "Water",
 
   "can_opener.information": "Opens canned goods",
-  "canned_food.information": "Use a can opener to open it",
+  "canned_food.information": "Open it using the right tool",
   "splint.information": "Stabilizes broken limbs",
   "rbi_syringe.information": "Causes infection",
   "cure_syringe.information": "Cures infection"
