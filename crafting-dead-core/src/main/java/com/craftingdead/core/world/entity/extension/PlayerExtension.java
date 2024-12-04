@@ -50,6 +50,8 @@ public interface PlayerExtension<E extends Player>
 
   void openEquipmentMenu();
 
+  void openCraftingMenu();
+
   void openMenu(Equipment.Slot slot);
 
   ItemStack getHandcuffs();

@@ -1,5 +1,6 @@
 {
   "container.equipment": "Equipment",
+  "container.crafting": "Crafting",
   "enchantment.craftingdead.armor_penetration": "Armor Penetration",
 
   "key.reload": "Reload",
@@ -451,6 +452,8 @@
   "bolt_cutters.free": "Your handcuffs were cut free by %s",
   "handcuffs_key.removed": "The handcuffs are removed!",
 
+  "inventory_inventory.information": "Inventory",
+  "inventory_crafting.information": "Crafting",
   "grenade.information": "Shift-click to throw close",
   "handcuffs.information": "Right-click on a player",
   "handcuffs_key.information": "Right-click on a handcuffed player",

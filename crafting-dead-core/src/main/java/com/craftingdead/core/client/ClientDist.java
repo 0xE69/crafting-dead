@@ -18,6 +18,7 @@
 
 package com.craftingdead.core.client;
 
+import com.craftingdead.core.client.gui.screen.inventory.CraftingScreen;
 import com.craftingdead.core.network.message.play.DamageHandcuffsMessage;
 import com.craftingdead.core.world.item.MeleeWeaponItem;
 import com.craftingdead.core.world.item.ModAxeItem;
@@ -331,6 +332,7 @@ public class ClientDist implements ModDist {
 
   private void handleClientSetup(FMLClientSetupEvent event) {
     MenuScreens.register(ModMenuTypes.EQUIPMENT.get(), EquipmentScreen::new);
+    MenuScreens.register(ModMenuTypes.CRAFTING.get(), CraftingScreen::new);
     MenuScreens.register(ModMenuTypes.VEST.get(), GenericContainerScreen::new);
     MenuScreens.register(ModMenuTypes.SMALL_BACKPACK.get(), GenericContainerScreen::new);
     MenuScreens.register(ModMenuTypes.MEDIUM_BACKPACK.get(), GenericContainerScreen::new);
