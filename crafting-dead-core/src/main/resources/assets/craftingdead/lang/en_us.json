@@ -74,6 +74,12 @@
   "options.craftingdead.server.explosives.smoke_grenade.deactivation_tick":"Smoke Grenade Deactivation Delay (Ticks)",
   "options.craftingdead.server.explosives.dispense_grenades": "Explosives Dispense Grenades",
   "options.craftingdead.server.explosives.fire_grenade_secondary_explosion": "Fire Grenade Secondary Explosion",
+  "options.craftingdead.server.casualClothingDamageReduction": "Casual Clothing Damage Reduction",
+  "options.craftingdead.server.casualClothingBleedAndInfectionReduction": "Casual Clothing Bleeding & Infection Reduction",
+  "options.craftingdead.server.utilityClothingDamageReduction": "Utility Clothing Damage Reduction",
+  "options.craftingdead.server.utilityClothingBleedAndInfectionReduction": "Utility Clothing Bleeding & Infection Reduction",
+  "options.craftingdead.server.militaryClothingDamageReduction": "Military Clothing Damage Reduction",
+  "options.craftingdead.server.militaryClothingBleedAndInfectionReduction": "Military Clothing Bleeding & Infection Reduction",
 
   "effect.craftingdead.adrenaline":"Adrenaline",
   "effect.craftingdead.bleeding":"Bleeding",

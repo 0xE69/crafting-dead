@@ -48,6 +48,17 @@ public class ServerConfig {
   public final ForgeConfigSpec.DoubleValue handcuffDamageChance;
 
   // ================================================================================
+  // Clothing Values
+  // ================================================================================
+
+  public final ForgeConfigSpec.DoubleValue casualClothingDamageReduction;
+  public final ForgeConfigSpec.DoubleValue casualClothingBleedAndInfectionReduction;
+  public final ForgeConfigSpec.DoubleValue utilityClothingDamageReduction;
+  public final ForgeConfigSpec.DoubleValue utilityClothingBleedAndInfectionReduction;
+  public final ForgeConfigSpec.DoubleValue militaryClothingDamageReduction;
+  public final ForgeConfigSpec.DoubleValue militaryClothingBleedAndInfectionReduction;
+
+  // ================================================================================
   // Burst-fire Values
   // ================================================================================
 
@@ -193,6 +204,43 @@ public class ServerConfig {
           .translation("options.craftingdead.server.handcuff_damage_chance")
           .comment("The Chance that the player damages the handcuff")
           .defineInRange("handcuffDamageChance", 0.4F, 0.1F, 1.0F);
+    }
+    builder.pop();
+
+    // Clothing Values
+    builder
+        .comment("Values regarding the clothing a player wears")
+        .push("clothing-values");
+    {
+      this.casualClothingDamageReduction = builder
+          .translation("options.craftingdead.server.casualClothingDamageReduction")
+          .comment("Sets the percentage of damage reduction. Default is 2% (0.02)")
+          .defineInRange("casualDamageReduction", 0.02F, 0.00F, 1.00F);
+
+      this.casualClothingBleedAndInfectionReduction = builder
+          .translation("options.craftingdead.server.casualClothingBleedAndInfectionReduction")
+          .comment("Sets the percentage of bleed and infection chance reduction. Default is 10% (0.10)")
+          .defineInRange("casualBleedAndInfectionReduction", 0.10F, 0.00F, 1.00F);
+
+      this.utilityClothingDamageReduction = builder
+          .translation("options.craftingdead.server.utilityClothingDamageReduction")
+          .comment("Sets the percentage of damage reduction. Default is 5% (0.05)")
+          .defineInRange("utilityDamageReduction", 0.05F, 0.00F, 1.00F);
+
+      this.utilityClothingBleedAndInfectionReduction = builder
+          .translation("options.craftingdead.server.utilityClothingBleedAndInfectionReduction")
+          .comment("Sets the percentage of bleed and infection chance reduction. Default is 20% (0.20)")
+          .defineInRange("utilityBleedAndInfectionReduction", 0.20F, 0.00F, 1.00F);
+
+      this.militaryClothingDamageReduction = builder
+          .translation("options.craftingdead.server.militaryClothingDamageReduction")
+          .comment("Sets the percentage of damage reduction. Default is 8% (0.08)")
+          .defineInRange("militaryDamageReduction", 0.08F, 0.00F, 1.00F);
+
+      this.militaryClothingBleedAndInfectionReduction = builder
+          .translation("options.craftingdead.server.militaryClothingBleedAndInfectionReduction")
+          .comment("Sets the percentage of bleed and infection chance reduction. Default is 30% (0.30)")
+          .defineInRange("militaryBleedAndInfectionReduction", 0.30F, 0.00F, 1.00F);
     }
     builder.pop();
 
