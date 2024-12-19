@@ -33,6 +33,7 @@ import com.craftingdead.core.world.entity.grenade.FlashGrenadeEntity;
 import com.craftingdead.core.world.entity.grenade.FragGrenade;
 import com.craftingdead.core.world.entity.grenade.SmokeGrenadeEntity;
 import com.craftingdead.core.world.inventory.GenericMenu;
+import com.craftingdead.core.world.item.ClothingItem.ClothingType;
 import com.craftingdead.core.world.item.combatslot.CombatSlot;
 import com.craftingdead.core.world.item.equipment.Equipment;
 import com.craftingdead.core.world.item.gun.Gun;
@@ -46,12 +47,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -1105,7 +1103,7 @@ public class ModItems {
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> FIRE_AXE = deferredRegister.register("fire_axe",
-      () -> new AxeItem(Tiers.IRON, 14, -2.4F, new Item.Properties()
+      () -> new ModAxeItem(Tiers.IRON, 14, -2.4F, new Item.Properties()
           .durability(100)
           .tab((COMBAT_TAB))));
 
@@ -1130,7 +1128,7 @@ public class ModItems {
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> SLEDGEHAMMER = deferredRegister.register("sledgehammer",
-      () -> new PickaxeItem(Tiers.IRON, 10, -2.4F,
+      () -> new ModPickaxeItem(Tiers.IRON, 10, -2.4F,
           new Item.Properties()
               .durability(110)
               .tab(COMBAT_TAB)));
@@ -1141,12 +1139,12 @@ public class ModItems {
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> SHOVEL = deferredRegister.register("shovel",
-      () -> new ShovelItem(Tiers.IRON, 8, -2.4F, new Item.Properties()
+      () -> new ModShovelItem(Tiers.IRON, 8, -2.4F, new Item.Properties()
           .durability(70)
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> HATCHET = deferredRegister.register("hatchet",
-      () -> new AxeItem(Tiers.IRON, 16, -2.4F, new Item.Properties()
+      () -> new ModAxeItem(Tiers.IRON, 16, -2.4F, new Item.Properties()
           .durability(40)
           .tab(COMBAT_TAB)));
 
@@ -1172,7 +1170,7 @@ public class ModItems {
           .tab(COMBAT_TAB)));
 
   public static final RegistryObject<Item> PICKAXE = deferredRegister.register("pickaxe",
-      () -> new PickaxeItem(Tiers.IRON, 10, -2.4F, new Item.Properties()
+      () -> new ModPickaxeItem(Tiers.IRON, 10, -2.4F, new Item.Properties()
           .durability(210)
           .tab(COMBAT_TAB)));
 
@@ -1521,63 +1519,72 @@ public class ModItems {
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> SAS_CLOTHING =
       deferredRegister.register("sas_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> SPETSNAZ_CLOTHING =
       deferredRegister.register("spetsnaz_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> POLICE_CLOTHING =
       deferredRegister.register("police_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> CAMO_CLOTHING =
       deferredRegister.register("camo_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> COMBAT_BDU_CLOTHING =
       deferredRegister.register("combat_bdu_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> WINTER_ARMY_CLOTHING =
       deferredRegister.register("winter_army_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> ARMY_DESERT_CLOTHING =
       deferredRegister.register("army_desert_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> PILOT_CLOTHING =
       deferredRegister.register("pilot_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> HAZMAT_CLOTHING =
       deferredRegister.register("hazmat_clothing",
@@ -1585,35 +1592,40 @@ public class ModItems {
               .fireImmunity()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> TAC_GHILLIE_CLOTHING =
       deferredRegister.register("tac_ghillie_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> SWAT_CLOTHING =
       deferredRegister.register("swat_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> SPACE_SUIT_CLOTHING =
       deferredRegister.register("space_suit_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> SHERIFF_CLOTHING =
       deferredRegister.register("sheriff_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> JUGGERNAUT_CLOTHING =
       deferredRegister.register("juggernaut_clothing",
@@ -1631,7 +1643,8 @@ public class ModItems {
               .fireImmunity()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> FIREMAN_CLOTHING =
       deferredRegister.register("fireman_clothing",
@@ -1639,49 +1652,56 @@ public class ModItems {
               .fireImmunity()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> DOCTOR_CLOTHING =
       deferredRegister.register("doctor_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> SMART_CLOTHING =
       deferredRegister.register("smart_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.CASUAL));
 
   public static final RegistryObject<Item> CASUAL_GREEN_CLOTHING =
       deferredRegister.register("casual_green_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.CASUAL));
 
   public static final RegistryObject<Item> BUILDER_CLOTHING =
       deferredRegister.register("builder_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> BUSINESS_CLOTHING =
       deferredRegister.register("business_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.CASUAL));
 
   public static final RegistryObject<Item> SEC_GUARD_CLOTHING =
       deferredRegister.register("sec_guard_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> MIL_HAZMAT_CLOTHING =
       deferredRegister.register("mil_hazmat_clothing",
@@ -1689,105 +1709,120 @@ public class ModItems {
               .fireImmunity()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> FULL_GHILLIE_CLOTHING =
       deferredRegister.register("full_ghillie_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> RED_DUSK_CLOTHING =
       deferredRegister.register("red_dusk_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> CLONE_CLOTHING =
       deferredRegister.register("clone_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> COOKIE_CLOTHING =
       deferredRegister.register("cookie_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.CASUAL));
 
   public static final RegistryObject<Item> DEADPOOL_CLOTHING =
       deferredRegister.register("deadpool_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.CASUAL));
 
   public static final RegistryObject<Item> NINJA_CLOTHING =
       deferredRegister.register("ninja_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.CASUAL));
 
   public static final RegistryObject<Item> ARMY_MEDIC_CLOTHING =
       deferredRegister.register("army_medic_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> BLUE_DUSK_CLOTHING =
       deferredRegister.register("blue_dusk_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> PRESIDENT_CLOTHING =
       deferredRegister.register("president_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> YELLOW_DUSK_CLOTHING =
       deferredRegister.register("yellow_dusk_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> ORANGE_DUSK_CLOTHING =
       deferredRegister.register("orange_dusk_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> GREEN_DUSK_CLOTHING =
       deferredRegister.register("green_dusk_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> WHITE_DUSK_CLOTHING =
       deferredRegister.register("white_dusk_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> PURPLE_DUSK_CLOTHING =
       deferredRegister.register("purple_dusk_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> SCUBA_CLOTHING =
       deferredRegister.register("scuba_clothing",
@@ -1795,21 +1830,24 @@ public class ModItems {
               .enhancesSwimming()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   public static final RegistryObject<Item> DDPAT_CLOTHING =
       deferredRegister.register("ddpat_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.MILITARY));
 
   public static final RegistryObject<Item> CONTRACTOR_CLOTHING =
       deferredRegister.register("contractor_clothing",
           () -> new ClothingItem((ClothingItem.Properties) new ClothingItem.Properties()
               .stacksTo(1)
               .tab(COSMETICS_TAB),
-              ActionTypes.SHRED_CLOTHING));
+              ActionTypes.SHRED_CLOTHING,
+              ClothingType.UTILITY));
 
   // ================================================================================
   // Gun Parts
@@ -2114,6 +2152,9 @@ public class ModItems {
             .withStyle(ChatFormatting.GRAY));
     ArbitraryTooltips.registerTooltip(CLEAN_RAG,
         new TranslatableComponent("clean_rag.information")
+            .withStyle(ChatFormatting.GRAY));
+    ArbitraryTooltips.registerTooltip(PARACHUTE,
+        new TranslatableComponent("parachute.information")
             .withStyle(ChatFormatting.GRAY));
   }
 }

@@ -1,6 +1,7 @@
 {
   "options.craftingdeadsurvival.client.display_blood": "Display Blood",
 
+  "options.craftingdeadsurvival.server.show_subtitles": "Show Subtitles",
   "options.craftingdeadsurvival.server.loot.enable": "Loot Enabled",
   "options.craftingdeadsurvival.server.loot.civilian_loot": "Civilian Loot Enabled",
   "options.craftingdeadsurvival.server.loot.civilian_rare_loot": "Civilian Rare Loot Enabled",
@@ -98,7 +99,8 @@
   "action.craftingdeadsurvival.use_syringe_on_zombie.message":"Withdrawing RBI infection",
   "action.craftingdeadsurvival.use_cure_syringe.message":"Injecting cure",
   "action.craftingdeadsurvival.use_rbi_syringe.message":"Injecting RBI",
-  "action.craftingdeadsurvival.fill_water_canteen.message": "Filling water canteen",
+  "action.craftingdeadsurvival.fill_water_canteen.message": "Filling Water Canteen",
+  "action.craftingdeadsurvival.fill_flask": "Filling Flask of Water",
 
   "itemGroup.craftingdeadsurvival": "Crafting Dead Survival",
 
@@ -201,7 +203,7 @@
   "item.craftingdeadsurvival.consumable.water_info": "Water",
 
   "can_opener.information": "Opens canned goods",
-  "canned_food.information": "Use a can opener to open it",
+  "canned_food.information": "Open it using the right tool",
   "splint.information": "Stabilizes broken limbs",
   "rbi_syringe.information": "Causes infection",
   "cure_syringe.information": "Cures infection"

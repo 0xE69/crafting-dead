@@ -32,6 +32,9 @@ public class ModMenuTypes {
   public static final RegistryObject<MenuType<EquipmentMenu>> EQUIPMENT =
       deferredRegister.register("equipment", () -> new MenuType<>(EquipmentMenu::new));
 
+  public static final RegistryObject<MenuType<CraftingMenu>> CRAFTING =
+      deferredRegister.register("crafting", () -> new MenuType<>(CraftingMenu::new));
+
   public static final RegistryObject<MenuType<GenericMenu>> VEST =
       deferredRegister.register("vest", () -> new MenuType<>(GenericMenu::createVest));
 

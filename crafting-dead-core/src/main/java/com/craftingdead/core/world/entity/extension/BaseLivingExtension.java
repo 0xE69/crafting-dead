@@ -18,10 +18,13 @@
 
 package com.craftingdead.core.world.entity.extension;
 
+import com.craftingdead.core.world.item.ClothingItem;
+import com.craftingdead.core.world.item.equipment.Equipment.Slot;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import org.jetbrains.annotations.Nullable;
 import com.craftingdead.core.ServerConfig;
@@ -353,6 +356,7 @@ class BaseLivingExtension<E extends LivingEntity, H extends LivingHandler>
   public float handleDamaged(DamageSource source, float amount) {
     var damage = this.handlers.values().stream().reduce(amount,
         (result, extension) -> extension.handleDamaged(source, result), (u, t) -> t);
+    // Handle scenarios where the player is the source of the damage (attacking another entity)
     if (source.getEntity() instanceof Player player) {
       if (ServerConfig.instance.backstabEnabled.get()) {
         var usedMeleeWeapon = player.getItemInHand(player.getUsedItemHand())
@@ -365,6 +369,18 @@ class BaseLivingExtension<E extends LivingEntity, H extends LivingHandler>
       if (ServerConfig.instance.criticalHitEnable.get()) {
         if (ServerConfig.instance.criticalHitChance.get() > player.getRandom().nextFloat()) {
           damage *= ServerConfig.instance.criticalHitBonusDamage.get().floatValue();
+        }
+      }
+    }
+
+    // Handle scenarios where a player is receiving damage
+    if (this.entity() instanceof Player player) {
+      var playerExtension = PlayerExtension.getOrThrow(player);
+      if (!playerExtension.getItemInSlot(Slot.CLOTHING).isEmpty()) {
+        // Makes sure that the damage income is from an entity
+        if (source.getEntity() != null) {
+          damage = Objects.requireNonNull(ClothingItem.getClothingItem(player))
+              .calculateDamage(damage);
         }
       }
     }

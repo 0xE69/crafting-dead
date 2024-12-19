@@ -64,9 +64,12 @@ public class FireGrenadeEntity extends Grenade implements ExplosionSource {
       if (!this.level.isClientSide()) {
         this.kill();
         var fireRadius = ServerConfig.instance.explosivesFireGrenadeRadius.get().floatValue();
-        this.level.explode(this, this.createDamageSource(), null,
-            this.getX(), this.getY() + this.getBbHeight(), this.getZ(), fireRadius, true,
-            ServerConfig.instance.explosivesFireGrenadeExplosionMode.get());
+        // Option added to disable this feature to prevent potential abuse for movement boosts
+        if (ServerConfig.instance.enableFireGrenadeSecondaryExplosion.get()) {
+          this.level.explode(this, this.createDamageSource(), null,
+              this.getX(), this.getY() + this.getBbHeight(), this.getZ(), fireRadius, true,
+              ServerConfig.instance.explosivesFireGrenadeExplosionMode.get());
+        }
 
         BlockPos.betweenClosedStream(this.blockPosition().offset(-fireRadius, 0, -fireRadius),
             this.blockPosition().offset(fireRadius, 0, fireRadius)).forEach(blockPos -> {

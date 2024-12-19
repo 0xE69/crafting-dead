@@ -198,111 +198,112 @@ public class SurvivalItems {
 
   public static final RegistryObject<Item> EMPTY_WATER_BOTTLE =
       deferredRegister.register("empty_water_bottle",
-          () -> new Item(new Item.Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Item.Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> WATER_BOTTLE =
       deferredRegister.register("water_bottle",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 8,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 8,
               EMPTY_WATER_BOTTLE, Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_WATER_CANTEEN =
       deferredRegister.register("empty_water_canteen",
           () -> new ActionItem(SurvivalActionTypes.FILL_WATER_CANTEEN,
-              new Item.Properties().tab(TAB).stacksTo(1)));
+              new Item.Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> WATER_CANTEEN =
       deferredRegister.register("water_canteen",
-          () -> new ConsumableItem(new Item.Properties().tab(TAB).stacksTo(1), 0, 0, 9,
+          () -> new ConsumableItem(new Item.Properties().tab(TAB).stacksTo(3), 0, 0, 9,
               EMPTY_WATER_CANTEEN, Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_FLASK =
       deferredRegister.register("empty_flask",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new ActionItem(SurvivalActionTypes.FILL_FLASK,
+              new Item.Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> FLASK =
       deferredRegister.register("flask",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 7, EMPTY_FLASK,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 7, EMPTY_FLASK,
               Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_ICED_TEA =
       deferredRegister.register("empty_iced_tea",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> ICED_TEA =
       deferredRegister.register("iced_tea",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 4, EMPTY_ICED_TEA,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 4, EMPTY_ICED_TEA,
               Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_IRON_BREW =
       deferredRegister.register("empty_iron_brew",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> IRON_BREW =
       deferredRegister.register("iron_brew",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 4, EMPTY_IRON_BREW,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 4, EMPTY_IRON_BREW,
               Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_JUICE_POUCH =
       deferredRegister.register("empty_juice_pouch",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> JUICE_POUCH =
       deferredRegister.register("juice_pouch",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 4,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 4,
               EMPTY_JUICE_POUCH, Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_LEMON_SODA =
       deferredRegister.register("empty_lemon_soda",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> LEMON_SODA =
       deferredRegister.register("lemon_soda",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 4, EMPTY_LEMON_SODA,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 4, EMPTY_LEMON_SODA,
               Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_MILK_CARTON =
       deferredRegister.register("empty_milk_carton",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> MILK_CARTON =
       deferredRegister.register("milk_carton",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 6,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 6,
               EMPTY_MILK_CARTON, Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_ORANGE_SODA =
       deferredRegister.register("empty_orange_soda",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> ORANGE_SODA =
       deferredRegister.register("orange_soda",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 4,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 4,
               EMPTY_ORANGE_SODA, Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_PEPE_SODA =
       deferredRegister.register("empty_pepe_soda",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> PEPE_SODA =
       deferredRegister.register("pepe_soda",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 4, EMPTY_PEPE_SODA,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 4, EMPTY_PEPE_SODA,
               Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_SPRITE =
       deferredRegister.register("empty_sprite",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> SPRITE =
       deferredRegister.register("sprite",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 6, EMPTY_SPRITE,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 6, EMPTY_SPRITE,
               Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> EMPTY_ZOMBIE_ENERGY =
       deferredRegister.register("empty_zombie_energy",
-          () -> new Item(new Properties().tab(TAB).stacksTo(1)));
+          () -> new Item(new Properties().tab(TAB).stacksTo(3)));
 
   public static final RegistryObject<Item> ZOMBIE_ENERGY =
       deferredRegister.register("zombie_energy",
-          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(1), 0, 0, 4,
+          () -> new ConsumableItem(new Properties().tab(TAB).stacksTo(3), 0, 0, 4,
               EMPTY_ZOMBIE_ENERGY, Type.ONLY_DRINK));
 
   public static final RegistryObject<Item> POWER_BAR =
@@ -525,27 +526,39 @@ public class SurvivalItems {
 
         @Override
         public boolean hasContainerItem(ItemStack stack) {
-          return true;
+          return !stack.isEmpty();
         }
 
         @Override
         public ItemStack getContainerItem(ItemStack itemStack) {
-          return itemStack.copy();
+          if (itemStack.isEmpty()) {
+            return ItemStack.EMPTY;
+          }
+          // Increment damage directly and check limits
+          var copy = itemStack.copy();
+          copy.setDamageValue(copy.getDamageValue() + 1);
+          return copy.getDamageValue() >= copy.getMaxDamage() ? ItemStack.EMPTY : copy;
         }
       });
 
   public static final RegistryObject<Item> SCREWDRIVER =
       deferredRegister.register("screwdriver", () -> new ToolItem(
-          new Item.Properties().durability(4).tab(TAB)) {
+          new Item.Properties().durability(6).tab(TAB)) {
 
         @Override
         public boolean hasContainerItem(ItemStack stack) {
-          return true;
+          return !stack.isEmpty();
         }
 
         @Override
         public ItemStack getContainerItem(ItemStack itemStack) {
-          return itemStack.copy();
+          if (itemStack.isEmpty()) {
+            return ItemStack.EMPTY;
+          }
+          // Increment damage directly and check limits
+          var copy = itemStack.copy();
+          copy.setDamageValue(copy.getDamageValue() + 1);
+          return copy.getDamageValue() >= copy.getMaxDamage() ? ItemStack.EMPTY : copy;
         }
       });
 
@@ -555,12 +568,18 @@ public class SurvivalItems {
 
         @Override
         public boolean hasContainerItem(ItemStack stack) {
-          return true;
+          return !stack.isEmpty();
         }
 
         @Override
         public ItemStack getContainerItem(ItemStack itemStack) {
-          return itemStack.copy();
+          if (itemStack.isEmpty()) {
+            return ItemStack.EMPTY;
+          }
+          // Increment damage directly and check limits
+          var copy = itemStack.copy();
+          copy.setDamageValue(copy.getDamageValue() + 1);
+          return copy.getDamageValue() >= copy.getMaxDamage() ? ItemStack.EMPTY : copy;
         }
       });
 

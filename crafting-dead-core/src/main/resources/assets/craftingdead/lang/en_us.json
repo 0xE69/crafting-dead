@@ -1,5 +1,6 @@
 {
   "container.equipment": "Equipment",
+  "container.crafting": "Crafting",
   "enchantment.craftingdead.armor_penetration": "Armor Penetration",
 
   "key.reload": "Reload",
@@ -72,6 +73,14 @@
   "options.craftingdead.server.explosives.decoy_grenade.deactivation_tick":"Decoy Grenade Deactivation Delay (Ticks)",
   "options.craftingdead.server.explosives.flash_grenade.deactivation_tick":"Flash Grenade Deactivation Delay (Ticks)",
   "options.craftingdead.server.explosives.smoke_grenade.deactivation_tick":"Smoke Grenade Deactivation Delay (Ticks)",
+  "options.craftingdead.server.explosives.dispense_grenades": "Explosives Dispense Grenades",
+  "options.craftingdead.server.explosives.fire_grenade_secondary_explosion": "Fire Grenade Secondary Explosion",
+  "options.craftingdead.server.casualClothingDamageReduction": "Casual Clothing Damage Reduction",
+  "options.craftingdead.server.casualClothingBleedAndInfectionReduction": "Casual Clothing Bleeding & Infection Reduction",
+  "options.craftingdead.server.utilityClothingDamageReduction": "Utility Clothing Damage Reduction",
+  "options.craftingdead.server.utilityClothingBleedAndInfectionReduction": "Utility Clothing Bleeding & Infection Reduction",
+  "options.craftingdead.server.militaryClothingDamageReduction": "Military Clothing Damage Reduction",
+  "options.craftingdead.server.militaryClothingBleedAndInfectionReduction": "Military Clothing Bleeding & Infection Reduction",
 
   "effect.craftingdead.adrenaline":"Adrenaline",
   "effect.craftingdead.bleeding":"Bleeding",
@@ -408,6 +417,9 @@
 
   "item.modifiers.clothing":"When wearing:",
 
+  "item.craftingdead.damage": "Damage",
+  "item.craftingdead.durability": "Durability",
+
   "hat.headshot_reduction": "Headshot protection: ",
   "hat.immune_to_flashes": "Immune to flashes",
   "hat.immune_to_gas": "Immune to gas",
@@ -439,6 +451,9 @@
   "handcuffs.handcuffed": "You've been handcuffed by %s",
   "bolt_cutters.free": "Your handcuffs were cut free by %s",
   "handcuffs_key.removed": "The handcuffs are removed!",
+
+  "inventory_inventory.information": "Inventory",
+  "inventory_crafting.information": "Crafting",
   "grenade.information": "Shift-click to throw close",
   "handcuffs.information": "Right-click on a player",
   "handcuffs_key.information": "Right-click on a handcuffed player",
@@ -449,6 +464,6 @@
   "bandage.information": "Heals a bit when applied",
   "dirty_rag.information": "Worn cloth",
   "bloody_rag.information": "Stained cloth",
-  "clean_rag.information": "Stops bleeding"
-
+  "clean_rag.information": "Stops bleeding",
+  "parachute.information": "Slows descent for safe landing"
 }

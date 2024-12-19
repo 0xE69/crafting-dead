@@ -25,6 +25,12 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class ServerConfig {
 
   // ================================================================================
+  // Game-Settings Values
+  // ================================================================================
+
+  public final ForgeConfigSpec.BooleanValue showSubtitles;
+
+  // ================================================================================
   // Loot Values
   // ================================================================================
 
@@ -105,6 +111,18 @@ public class ServerConfig {
   public final ForgeConfigSpec.IntValue pipeBombTicksBeforeActivation;
 
   public ServerConfig(ForgeConfigSpec.Builder builder) {
+    // Game-Settings configuration
+    builder
+        .comment("General Game-Settings")
+        .push("game-settings");
+    {
+      this.showSubtitles = builder
+          .translation("options.craftingdeadsurvival.server.show_subtitles")
+          .comment("If true display subtitles")
+          .define("showSubtitles", true);
+    }
+    builder.pop();
+
     // Loot configuration
     builder
         .comment("Tweak loot spawning and delays")

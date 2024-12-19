@@ -18,11 +18,13 @@
 
 package com.craftingdead.core.world.entity.extension;
 
+import com.craftingdead.core.event.OpenCraftingMenuEvent;
 import com.craftingdead.core.event.OpenEquipmentMenuEvent;
 import com.craftingdead.core.network.NetworkChannel;
 import com.craftingdead.core.network.SynchedData;
 import com.craftingdead.core.network.message.play.EnableCombatModeMessage;
 import com.craftingdead.core.world.action.Action;
+import com.craftingdead.core.world.inventory.CraftingMenu;
 import com.craftingdead.core.world.inventory.EquipmentMenu;
 import com.craftingdead.core.world.item.equipment.Equipment;
 import java.util.Collection;
@@ -183,6 +185,16 @@ final class PlayerExtensionImpl<E extends Player>
     this.entity().openMenu(new SimpleMenuProvider(
         (windowId, inventory, player) -> new EquipmentMenu(windowId, this),
         new TranslatableComponent("container.equipment")));
+  }
+
+  @Override
+  public void openCraftingMenu() {
+    if (MinecraftForge.EVENT_BUS.post(new OpenCraftingMenuEvent(this))) {
+      return;
+    }
+    this.entity().openMenu(new SimpleMenuProvider(
+        (windowId, inventory, player) -> new CraftingMenu(windowId, this),
+        new TranslatableComponent("container.crafting")));
   }
 
   @Override

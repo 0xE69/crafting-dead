@@ -36,7 +36,7 @@ public abstract class AbstractMenu extends AbstractContainerMenu {
   protected Container playerInventory;
 
   public AbstractMenu(MenuType<?> type, int id, Container playerInventory,
-      IItemHandler contents) {
+      @Nullable IItemHandler contents) {
     super(type, id);
     this.playerInventory = playerInventory;
     this.contents = contents;

@@ -18,15 +18,22 @@
 
 package com.craftingdead.core.client;
 
+import com.craftingdead.core.client.gui.screen.inventory.CraftingScreen;
 import com.craftingdead.core.network.message.play.DamageHandcuffsMessage;
+import com.craftingdead.core.world.item.MeleeWeaponItem;
+import com.craftingdead.core.world.item.ModAxeItem;
+import com.craftingdead.core.world.item.ModPickaxeItem;
+import com.craftingdead.core.world.item.ModShovelItem;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
@@ -325,6 +332,7 @@ public class ClientDist implements ModDist {
 
   private void handleClientSetup(FMLClientSetupEvent event) {
     MenuScreens.register(ModMenuTypes.EQUIPMENT.get(), EquipmentScreen::new);
+    MenuScreens.register(ModMenuTypes.CRAFTING.get(), CraftingScreen::new);
     MenuScreens.register(ModMenuTypes.VEST.get(), GenericContainerScreen::new);
     MenuScreens.register(ModMenuTypes.SMALL_BACKPACK.get(), GenericContainerScreen::new);
     MenuScreens.register(ModMenuTypes.MEDIUM_BACKPACK.get(), GenericContainerScreen::new);
@@ -438,8 +446,15 @@ public class ClientDist implements ModDist {
 
   @SubscribeEvent
   public void handleTooltipEvent(ItemTooltipEvent event) {
+    var item = event.getItemStack().getItem();
     var functions = ArbitraryTooltips.getFunctions(event.getItemStack().getItem());
     int lineIndex = 1;
+
+    // Removes Attribute Text
+    if (item instanceof MeleeWeaponItem || item instanceof ModAxeItem
+        || item instanceof ModPickaxeItem || item instanceof ModShovelItem) {
+      cleanUpToolTip(event.getToolTip());
+    }
 
     // Applies the arbitrary tooltips
     for (var function : functions) {
@@ -946,5 +961,16 @@ public class ClientDist implements ModDist {
   private boolean isSurvivalMode() {
     return this.minecraft.player != null && !this.minecraft.player.getAbilities().instabuild
         && !this.minecraft.player.isSpectator();
+  }
+
+  private void cleanUpToolTip(List<Component> toolTip) {
+    toolTip.removeIf(component -> {
+      var text = component.getString();
+      return text.contains("When in Main Hand:") ||
+          text.contains("Attack Damage") ||
+          text.contains("Attack Knockback") ||
+          text.contains("Attack Speed") ||
+          text.isBlank();
+    });
   }
 }

@@ -19,6 +19,9 @@
 package com.craftingdead.survival.world.entity;
 
 import com.craftingdead.core.world.effect.ModMobEffects;
+import com.craftingdead.core.world.item.ClothingItem;
+import com.craftingdead.core.world.item.equipment.Equipment.Slot;
+import java.util.Objects;
 import java.util.Random;
 import com.craftingdead.core.world.entity.extension.LivingHandlerType;
 import com.craftingdead.core.world.entity.extension.PlayerExtension;
@@ -43,7 +46,12 @@ public class SurvivalPlayerHandler implements PlayerHandler {
   /**
    * The % chance of getting infected by a zombie.
    */
-  private static final float ZOMBIE_INFECTION_CHANCE = 0.1F;
+  private static final float BASE_INFECTION_CHANCE = 0.1F;
+
+  /**
+   * The % chance of bleeding.
+   */
+  private static final float BASE_BLEEDING_CHANCE = 0.1F;
 
   private static final Random random = new Random();
 
@@ -100,7 +108,12 @@ public class SurvivalPlayerHandler implements PlayerHandler {
   @Override
   public boolean handleHurt(DamageSource source, float amount) {
     if (source.getEntity() instanceof Zombie) {
-      this.infect(ZOMBIE_INFECTION_CHANCE);
+      if (!this.player.getItemInSlot(Slot.CLOTHING).isEmpty()) {
+        this.infect(Objects.requireNonNull(ClothingItem.getClothingItem(this.player.entity()))
+            .calculateBleedAndInfectionChance(BASE_INFECTION_CHANCE));
+      } else {
+        this.infect(BASE_INFECTION_CHANCE);
+      }
     }
     return false;
   }
@@ -127,7 +140,13 @@ public class SurvivalPlayerHandler implements PlayerHandler {
         && CraftingDeadSurvival.serverConfig.bleedingEnabled.get()
         && !this.player.entity().hasEffect(ModMobEffects.BLEEDING.get())
         && (source.getDirectEntity() != null || source.isExplosion())) {
-      var bleedChance = 0.1F * amount;
+      float bleedChance;
+      if (!this.player.getItemInSlot(Slot.CLOTHING).isEmpty()) {
+        bleedChance = Objects.requireNonNull(ClothingItem.getClothingItem(this.player.entity()))
+            .calculateBleedAndInfectionChance(BASE_BLEEDING_CHANCE) * amount;
+      } else {
+        bleedChance = BASE_BLEEDING_CHANCE * amount;
+      }
       if (random.nextFloat() < bleedChance
           && this.player.entity().addEffect(
               new MobEffectInstance(ModMobEffects.BLEEDING.get(), 9999999))) {

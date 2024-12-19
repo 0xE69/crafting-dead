@@ -18,9 +18,11 @@
 
 package com.craftingdead.core.world.item;
 
+import com.craftingdead.core.ServerConfig;
 import com.craftingdead.core.world.action.item.ItemActionType;
 import com.craftingdead.core.world.entity.extension.LivingExtension;
 import com.craftingdead.core.world.entity.extension.PlayerExtension;
+import com.craftingdead.core.world.item.equipment.Equipment.Slot;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -55,6 +57,12 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class ClothingItem extends EquipmentItem {
 
+  public enum ClothingType {
+    CASUAL,
+    UTILITY,
+    MILITARY
+  }
+
   public static final UUID ARMOR_MODIFIER_ID =
       UUID.fromString("4117e432-16f5-4eea-a4fe-127b54d39af1");
 
@@ -62,13 +70,16 @@ public class ClothingItem extends EquipmentItem {
   private final boolean fireImmunity;
   private final boolean enhancesSwimming;
   private final Supplier<? extends ItemActionType<?>> itemActionType;
+  private final ClothingType clothingType;
 
-  public ClothingItem(Properties properties, Supplier<? extends ItemActionType<?>> itemActionType) {
+  public ClothingItem(Properties properties, Supplier<? extends ItemActionType<?>> itemActionType,
+      ClothingType clothingType) {
     super(properties);
     this.attributeModifiers = properties.attributeModifiers.build();
     this.fireImmunity = properties.fireImmunity;
     this.enhancesSwimming = properties.enhancesSwimming;
     this.itemActionType = itemActionType;
+    this.clothingType = clothingType;
   }
 
   public ItemActionType<?> getActionType() {
@@ -173,5 +184,37 @@ public class ClothingItem extends EquipmentItem {
       this.enhancesSwimming = true;
       return this;
     }
+  }
+
+  public static ClothingItem getClothingItem(Player player) {
+    var playerExtension = PlayerExtension.getOrThrow(player);
+    if (!playerExtension.getItemInSlot(Slot.CLOTHING).isEmpty()) {
+      return (ClothingItem) playerExtension.getItemInSlot(Slot.CLOTHING).getItem();
+    }
+    return null;
+  }
+
+  public float calculateDamage(float damage) {
+    float reductionFactor = switch (this.clothingType) {
+      case CASUAL -> 1.00F - ServerConfig.instance.
+          casualClothingDamageReduction.get().floatValue();
+      case UTILITY -> 1.00F - ServerConfig.instance.
+          utilityClothingDamageReduction.get().floatValue();
+      case MILITARY -> 1.00F - ServerConfig.instance.
+          militaryClothingDamageReduction.get().floatValue();
+    };
+    return damage * reductionFactor;
+  }
+
+  public float calculateBleedAndInfectionChance(float baseChance) {
+    float reductionFactor = switch (this.clothingType) {
+      case CASUAL -> 1.00F - ServerConfig.instance.
+          casualClothingBleedAndInfectionReduction.get().floatValue();
+      case UTILITY -> 1.00F - ServerConfig.instance.
+          utilityClothingBleedAndInfectionReduction.get().floatValue();
+      case MILITARY -> 1.00F - ServerConfig.instance.
+          militaryClothingBleedAndInfectionReduction.get().floatValue();
+    };
+    return baseChance * reductionFactor;
   }
 }
